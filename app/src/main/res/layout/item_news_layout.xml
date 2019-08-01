@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/color_bai">
+
+    <ImageView
+        android:id="@+id/iv1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/girl"
+        android:layout_weight="2"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="5"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="标题"
+            android:textSize="20dp"
+            android:gravity="left"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tv_shijian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2019-0-0"
+            android:textColor="@color/color_hui_2"
+            android:textSize="10dp"
+            android:lines="1"
+            android:paddingTop="3dp" />
+
+        <TextView
+            android:id="@+id/tv_jianjie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="简介"
+            android:textColor="@color/color_hui_2"
+            android:textSize="15dp"
+            android:lines="3"
+            android:ellipsize="end"
+            android:paddingTop="3dp"
+            android:paddingBottom="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

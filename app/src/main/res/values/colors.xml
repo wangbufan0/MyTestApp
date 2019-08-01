@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="color_hei">#000</color>
+    <color name="color_bai">#fff</color>
+    <color name="color_hui_2">#CCCCCC</color>
+    <color name="color_hui_1">#D5D5D5</color>
+    <color name="color_hui_0">#EEEEEE</color>
+    <color name="color_lan">#2BB3D5</color>
+    <color name="color_touming">#00000000</color>
+
+</resources>
