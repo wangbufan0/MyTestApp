@@ -44,6 +44,8 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
         fragments.add(new HomepageFragment());
         fragments.add(new HomepageFragment());
 
+        ///添加一行注释
+
         bottomNavigationView=findViewById(R.id.bnv_navigation);
         lastfragment=0;
         getSupportFragmentManager().beginTransaction().replace(R.id.ll_home,fragments.get(0)).show(fragments.get(0)).commit();
