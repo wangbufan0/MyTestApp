@@ -53,7 +53,7 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
 
     protected abstract void registerMultiType();
 
-
+//sxascasca
 
     public void loadDataSuccessList(List<T> newListData, int currentPage, boolean hasNext) {
         refreshComplete();
