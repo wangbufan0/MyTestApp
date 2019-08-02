@@ -16,10 +16,14 @@ import com.example.mytestapp.Base.View.BaseView;
 import com.example.mytestapp.R;
 import com.example.mytestapp.utils.ToastUtil;
 
+import me.bakumon.statuslayoutmanager.library.DefaultOnStatusChildClickListener;
+import me.bakumon.statuslayoutmanager.library.StatusLayoutManager;
+
 public abstract class BaseMvpFragment extends Fragment implements BaseView {
 
     protected TitleLayoutI titleLayoutI;
     protected FrameLayout rootView;
+    protected StatusLayoutManager statusLayoutManager;
 
     @Nullable
     @Override
@@ -35,8 +39,34 @@ public abstract class BaseMvpFragment extends Fragment implements BaseView {
         rootView.addView(inflate(getLayoutRes()), new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         initStatusLayout();
         initBar();
-        initView();
         initPresenter();
+        initView();
+    }
+
+
+    protected void initStatusLayout() {
+        // 设置重试事件监听器
+        statusLayoutManager = new StatusLayoutManager.Builder(rootView)
+                .setLoadingLayout(inflate(R.layout.common_layout_loading))
+                .setEmptyLayout(inflate(R.layout.common_layout_empty))
+                .setEmptyClickViewID(R.id.common_empty_box)
+                .setErrorLayout(inflate(R.layout.common_layout_error))
+                .setErrorClickViewID(R.id.common_error_box)
+                // 设置重试事件监听器
+                .setOnStatusChildClickListener(new DefaultOnStatusChildClickListener() {
+                    @Override
+                    public void onEmptyChildClick(View view) {
+                        statusLayoutManager.showLoadingLayout();
+                        loadData(1);
+                    }
+
+                    @Override
+                    public void onErrorChildClick(View view) {
+                        statusLayoutManager.showLoadingLayout();
+                        loadData(1);
+                    }
+                })
+                .build();
     }
 
     @Override
@@ -46,9 +76,6 @@ public abstract class BaseMvpFragment extends Fragment implements BaseView {
 
     public View findViewById(int idRes){return getView().findViewById(idRes);}
 
-    protected void initStatusLayout(){
-
-    }
 
     protected View inflate(@LayoutRes int resource) {
         if (resource == 0) return null;

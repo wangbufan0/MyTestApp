@@ -49,6 +49,7 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
             }
 
         });
+        statusLayoutManager.showLoadingLayout();
     }
 
     protected abstract void registerMultiType();
@@ -67,6 +68,11 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
         }
         //添加数据
         listData.addAll(newListData);
+        if (listData.isEmpty()) {
+            statusLayoutManager.showEmptyLayout();
+        } else {
+            statusLayoutManager.showSuccessLayout();
+        }
         mAdapter.notifyDataSetChanged();
     }
 
@@ -91,6 +97,6 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
     @Override
     public void onResume() {
         super.onResume();
-        loadData(1);
+        loadData(mCurrentPageNumber);
     }
 }
