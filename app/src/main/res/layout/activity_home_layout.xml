@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:background="@color/color_hui_1"/>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,6 +22,6 @@
         app:menu="@menu/navigation"
         app:labelVisibilityMode="labeled"
         app:itemIconTint="@color/select_item"
-        app:itemTextColor="@color/select_item"/>
+        app:itemTextColor="@color/select_item" />
 
 </LinearLayout>

@@ -58,7 +58,9 @@ dependencies {
     //RecyclerView刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-32'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-32'
-
+    //工具类
     implementation 'com.blankj:utilcode:1.23.7'
+    //界面显示框架（无数据，无网络等）
+    implementation 'com.github.Bakumon:StatusLayoutManager:1.0.1'
 
 }
