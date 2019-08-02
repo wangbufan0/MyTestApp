@@ -1,17 +1,21 @@
-package com.example.mytestapp.ui;
+package com.example.mytestapp.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
 import com.example.mytestapp.R;
+import com.example.mytestapp.manager.user.UserManager;
 import com.example.mytestapp.ui.homepage.HomepageFragment;
+import com.example.mytestapp.ui.login.LoginActivity;
 import com.example.mytestapp.ui.news.fragment.NewsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,9 +30,19 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
 
     private int lastfragment;
 
-    public static void lunch(Context context){
+    public static void launch(Context context){
         Intent intent = new Intent(context, BaseActivity.class);
         context.startActivity(intent);
+    }
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(!UserManager.getInstance().isLogin()){
+            LoginActivity.launch(this);
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.mytestapp.ui;
+package com.example.mytestapp.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.bt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BaseActivity.lunch(context);
+                BaseActivity.launch(context);
             }
         });
     }
