@@ -11,6 +11,7 @@ public class BasePresenter<V extends BaseView> {
     protected V mMvpView;
 
 
+
     protected final void attachToView(@NonNull V view) {
         this.mMvpView = view;
         onAttachToView(view);
@@ -19,6 +20,8 @@ public class BasePresenter<V extends BaseView> {
     protected void onAttachToView(@NonNull V view) {
 
     }
+
+
 
     protected final void detachFromView() {
         this.mMvpView = null;

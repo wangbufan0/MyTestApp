@@ -44,6 +44,9 @@ dependencies {
     //okhttp包，网络
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.okio:okio:1.14.0'
+    // Retrofit库
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+
     //注解包，Helper
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.nineoldandroids:library:2.4.0'
@@ -62,5 +65,11 @@ dependencies {
     implementation 'com.blankj:utilcode:1.23.7'
     //界面显示框架（无数据，无网络等）
     implementation 'com.github.Bakumon:StatusLayoutManager:1.0.1'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+
+    implementation 'io.reactivex:rxandroid:1.1.0'
+
 
 }

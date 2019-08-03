@@ -5,23 +5,25 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.example.mytestapp.R;
 import com.example.mytestapp.ui.news.binder.holder.NewsViewHolder;
+import com.example.mytestapp.ui.news.domain.NewsResq;
 
 import me.drakeet.multitype.ItemViewBinder;
 
-public class NewsBinder extends ItemViewBinder<String, NewsViewHolder> {
+public class NewsBinder extends ItemViewBinder<NewsResq.TopStoriesBean, NewsViewHolder> {
 
     @NonNull
     @Override
     protected NewsViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        return  new NewsViewHolder(inflater.inflate(R.layout.item_news_layout,parent,false));
+        return NewsViewHolder.getInstance(inflater,parent);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull NewsViewHolder newsVH, @NonNull String s) {
-        newsVH.postDataToUI(s);
+    protected void onBindViewHolder(@NonNull NewsViewHolder newsViewHolder, @NonNull NewsResq.TopStoriesBean topStoriesBean) {
+        newsViewHolder.postDataToUI(topStoriesBean);
     }
+
+
 
 
 }

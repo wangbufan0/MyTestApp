@@ -16,12 +16,14 @@ import com.example.mytestapp.utils.ToastUtil;
 
 import me.bakumon.statuslayoutmanager.library.DefaultOnStatusChildClickListener;
 import me.bakumon.statuslayoutmanager.library.StatusLayoutManager;
+import retrofit2.Retrofit;
 
 public abstract class BaseMvpActivity extends AppCompatActivity implements BaseView {
 
     protected TitleLayoutI titleLayoutI;
     protected FrameLayout rootView;
     protected StatusLayoutManager statusLayoutManager;
+    protected Retrofit retrofit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,9 +34,12 @@ public abstract class BaseMvpActivity extends AppCompatActivity implements BaseV
         rootView.addView(inflate(getLayoutRes()), new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         initStatusLayout();
         initBar();
-        initView();
         initPresenter();
+        initView();
     }
+
+
+
 
     protected void initStatusLayout() {
         // 设置重试事件监听器
@@ -91,5 +96,9 @@ public abstract class BaseMvpActivity extends AppCompatActivity implements BaseV
 
     protected abstract int getLayoutRes();
 
+    @Override
+    protected void onDestroy() {
 
+        super.onDestroy();
+    }
 }
