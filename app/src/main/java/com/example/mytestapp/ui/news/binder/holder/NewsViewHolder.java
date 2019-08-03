@@ -9,9 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.mytestapp.R;
 import com.example.mytestapp.ui.news.domain.NewsResq;
+import com.example.mytestapp.utils.GLideUtil;
 
 public class NewsViewHolder extends RecyclerView.ViewHolder {
 
@@ -33,9 +33,7 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
 
         public void postDataToUI(NewsResq.TopStoriesBean Data){
             textView.setText(Data.getTitle());
-            Glide.with(itemView.getContext())
-                    .load(Data.getImage())
-                    .into(imageView);
+            GLideUtil.loadImageViewLoding(itemView.getContext(),Data.getImage(),imageView);
         }
 
 }
