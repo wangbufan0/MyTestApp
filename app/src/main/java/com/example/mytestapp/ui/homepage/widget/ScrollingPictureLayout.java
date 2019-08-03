@@ -15,8 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
 import com.example.mytestapp.R;
+import com.example.mytestapp.utils.GLideUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,9 +87,7 @@ public class ScrollingPictureLayout extends LinearLayout {
         for (int i = 0; i < datas.size(); i++) { // 初始化图片资源
             ImageView image = new ImageView(context);
             //image.setBackgroundResource(imageIds[i]);
-            Glide.with(context)
-                    .load(datas.get(i))
-                    .into(image);
+            GLideUtil.loadImageViewLoding(context,datas.get(i),image);
             image.setOnClickListener(new pagerImageClick());
             imageList.add(image);
 
