@@ -53,8 +53,8 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
         mAdapter=new MultiTypeAdapter();
         mAdapter.setItems(listData);
         NewsBinder newsBinder=new NewsBinder();
-        mAdapter.register(String.class, newsBinder);
-        recyclerView.setAdapter(mAdapter);
+     //   mAdapter.register(String.class, newsBinder);
+     //   recyclerView.setAdapter(mAdapter);
     }
 
     @Override

@@ -80,6 +80,8 @@ public class ScrollingPictureLayout extends LinearLayout {
 
     public void PostDataToUI(List<String> datas){
         this.datas=datas;
+        pointGroup.removeAllViews();
+
         pointGroup.bringToFront();
         imageList = new ArrayList<>();
         for (int i = 0; i < datas.size(); i++) { // 初始化图片资源
