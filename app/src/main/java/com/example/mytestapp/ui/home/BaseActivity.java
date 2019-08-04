@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
 import com.example.mytestapp.R;
 import com.example.mytestapp.manager.user.UserManager;
+import com.example.mytestapp.ui.community.home.CommunityFragment;
 import com.example.mytestapp.ui.homepage.home.fragment.HomepageFragment;
 import com.example.mytestapp.ui.login.LoginActivity;
 import com.example.mytestapp.ui.news.home.fragment.NewsFragment;
@@ -41,6 +42,16 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (!this.isTaskRoot()) { //判断该Activity是不是任务空间的源Activity，false也就是说是被系统重新实例化出来
+            //如果你就放在launcher Activity中话，这里可以直接return了
+            Intent mainIntent = getIntent();
+            String action = mainIntent.getAction();
+            if (mainIntent.hasCategory(Intent.CATEGORY_LAUNCHER) && action.equals(Intent.ACTION_MAIN)) {
+                finish();
+                return;
+            }
+        }
+
         if(!UserManager.getInstance().isLogin()){
             LoginActivity.launch(this);
         }
@@ -56,7 +67,7 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
         fragments=new ArrayList<>();
         fragments.add(new HomepageFragment());
         fragments.add(new NewsFragment());
-        fragments.add(new HomepageFragment());
+        fragments.add(new CommunityFragment());
         fragments.add(new PersonalFragment());
 
         ///添加一行注释

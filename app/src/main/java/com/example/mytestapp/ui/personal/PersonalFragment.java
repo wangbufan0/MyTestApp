@@ -4,11 +4,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.mytestapp.Base.fragment.BaseMvpFragment;
 import com.example.mytestapp.R;
+import com.example.mytestapp.manager.user.UserManager;
+import com.example.mytestapp.utils.GLideUtil;
 
 public class PersonalFragment extends BaseMvpFragment implements View.OnClickListener{
 
@@ -20,16 +19,31 @@ public class PersonalFragment extends BaseMvpFragment implements View.OnClickLis
     }
 
     @Override
+    protected void initBar() {
+        super.initBar();
+        titleLayoutI.setTitle("个人");
+    }
+
+    @Override
     protected void initView() {
 
         miv = (ImageView) findViewById(R.id.iv);
+
+
+        String urlImage = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561805219659&di=21aafa302d919a21be27a7acfde39a18&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F61%2F05%2F01300542392970153122058010203_s.jpg";
+
         //头像加载
-        Glide.with(getContext()).load(R.drawable.girl)
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                .into(miv);
+        GLideUtil.loadImageViewRound(getContext(),urlImage,miv);
+
+
         findViewById(R.id.geren_xiaoxi).setOnClickListener(this);
         findViewById(R.id.geren_shoucang).setOnClickListener(this);
         findViewById(R.id.geren_shezhi).setOnClickListener(this);
+        denglu = (TextView) findViewById(R.id.mTv_denglu);
+
+        if(UserManager.getInstance().isLogin()){
+            denglu.setText("已登陆："+UserManager.getInstance().getPhoneNumber());
+        }
 
     }
 
