@@ -35,6 +35,11 @@
             android:label="登陆"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".ui.news.detail.NewsDetailActivity"
+            android:label=" "
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 
 </manifest>

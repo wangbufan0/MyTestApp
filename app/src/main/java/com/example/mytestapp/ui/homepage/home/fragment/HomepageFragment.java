@@ -1,4 +1,4 @@
-package com.example.mytestapp.ui.homepage;
+package com.example.mytestapp.ui.homepage.home.fragment;
 
 import android.view.View;
 import android.widget.Button;
@@ -9,10 +9,11 @@ import com.example.mytestapp.Base.decoration.BaseItemDecoration;
 import com.example.mytestapp.Base.fragment.BaseMvpFragment;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
 import com.example.mytestapp.R;
-import com.example.mytestapp.ui.homepage.presenter.HomePagePresenter;
-import com.example.mytestapp.ui.homepage.view.HomepageViewI;
-import com.example.mytestapp.ui.homepage.widget.ScrollingPictureLayout;
-import com.example.mytestapp.ui.news.binder.NewsBinder;
+import com.example.mytestapp.ui.homepage.home.binder.HomepageBinder;
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp;
+import com.example.mytestapp.ui.homepage.home.presenter.HomePagePresenter;
+import com.example.mytestapp.ui.homepage.home.view.HomepageViewI;
+import com.example.mytestapp.ui.homepage.home.widget.ScrollingPictureLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,8 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
     ScrollingPictureLayout scrollingPictureLayout ;
     HomePagePresenter homePagePresenter;
     private RecyclerView recyclerView;
-    private Button yiyuan, yisheng ,jibing ;
     protected MultiTypeAdapter mAdapter;
-    protected List<String> listData = new ArrayList<>();
+    protected List<HomepageResp.StoriesBean> listData = new ArrayList<>();
 
 
 
@@ -52,15 +52,14 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
         recyclerView.addItemDecoration(new BaseItemDecoration(1));
         mAdapter=new MultiTypeAdapter();
         mAdapter.setItems(listData);
-        NewsBinder newsBinder=new NewsBinder();
-     //   mAdapter.register(String.class, newsBinder);
-     //   recyclerView.setAdapter(mAdapter);
+        HomepageBinder homepageBinder = new HomepageBinder();
+        mAdapter.register(HomepageResp.StoriesBean.class,homepageBinder);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
     protected void loadData(int page){
-        homePagePresenter.getScrollingPicture();
-        homePagePresenter.getNewsData();
+        homePagePresenter.getHomepageDatas();
     }
 
     @Override
@@ -68,16 +67,6 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
         return R.layout.fragment_homepage_layout;
     }
 
-    @Override
-    public void getScrollingPictureSuccessed(List<String> urlPucture) {
-        scrollingPictureLayout.PostDataToUI(urlPucture);
-    }
-
-    @Override
-    public void getNewsDatasuccessed(List<String> Datas) {
-        listData.addAll(Datas);
-        mAdapter.notifyDataSetChanged();
-    }
 
     @Override
     public void onResume() {
@@ -99,5 +88,13 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
                 showToast("点击了疾病");
                 break;
         }
+    }
+
+    @Override
+    public void getHomepageDatassuccessed(HomepageResp homepageResp) {
+        scrollingPictureLayout.PostDataToUI(homepageResp.getTop_stories());
+        listData.clear();
+        listData.addAll(homepageResp.getStories());
+        mAdapter.notifyDataSetChanged();
     }
 }

@@ -1,8 +1,8 @@
-package com.example.mytestapp.ui.news.domain;
+package com.example.mytestapp.ui.homepage.home.domain;
 
 import java.util.List;
 
-public class NewsResq {
+public class HomepageResp {
 
     /**
      * date : 20190803

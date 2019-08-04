@@ -1,13 +1,13 @@
-package com.example.mytestapp.ui.news.fragment;
+package com.example.mytestapp.ui.news.home.fragment;
 
 import com.example.mytestapp.Base.fragment.BaseListMvpFragment;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
-import com.example.mytestapp.ui.news.binder.NewsBinder;
-import com.example.mytestapp.ui.news.domain.NewsResq;
-import com.example.mytestapp.ui.news.presenter.NewsPresenter;
-import com.example.mytestapp.ui.news.view.NewsViewI;
+import com.example.mytestapp.ui.news.home.binder.NewsBinder;
+import com.example.mytestapp.ui.news.home.domain.NewsResq;
+import com.example.mytestapp.ui.news.home.presenter.NewsPresenter;
+import com.example.mytestapp.ui.news.home.view.NewsViewI;
 
-public class NewsFragment extends BaseListMvpFragment<NewsResq.TopStoriesBean> implements NewsViewI {
+public class NewsFragment extends BaseListMvpFragment<NewsResq.StoriesBean> implements NewsViewI {
 
     NewsPresenter mPresenter;
 
@@ -26,7 +26,7 @@ public class NewsFragment extends BaseListMvpFragment<NewsResq.TopStoriesBean> i
     @Override
     protected void registerMultiType() {
         NewsBinder newsBinder = new NewsBinder();
-        mAdapter.register(NewsResq.TopStoriesBean.class,newsBinder);
+        mAdapter.register(NewsResq.StoriesBean.class,newsBinder);
     }
 
     @Override
@@ -43,6 +43,6 @@ public class NewsFragment extends BaseListMvpFragment<NewsResq.TopStoriesBean> i
 
     @Override
     public void getNewsDatasuccessed(NewsResq Datas) {
-        loadDataSuccessList(Datas.getTop_stories(),mCurrentPageNumber,false);
+        loadDataSuccessList(Datas.getStories(),mCurrentPageNumber,false);
     }
 }

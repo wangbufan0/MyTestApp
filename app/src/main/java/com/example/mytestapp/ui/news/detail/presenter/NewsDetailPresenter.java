@@ -1,27 +1,27 @@
-package com.example.mytestapp.ui.news.presenter;
+package com.example.mytestapp.ui.news.detail.presenter;
 
 import com.example.mytestapp.Base.Retrofit.myRest;
 import com.example.mytestapp.Base.presenter.BasePresenter;
-import com.example.mytestapp.ui.news.domain.NewsResq;
-import com.example.mytestapp.ui.news.domain.NewsService;
-import com.example.mytestapp.ui.news.view.NewsViewI;
+import com.example.mytestapp.ui.news.detail.domain.NewDetailresq;
+import com.example.mytestapp.ui.news.detail.domain.NewsDetailService;
+import com.example.mytestapp.ui.news.home.view.NewsViewI;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class NewsPresenter extends BasePresenter<NewsViewI> {
+public class NewsDetailPresenter extends BasePresenter<NewsViewI> {
 
 
-    public void getNesDatas() {
+    public void getData(String id) {
 
         myRest.getInstance()
-                .create(NewsService.class)
-                .GetNewsReverse()
+                .create(NewsDetailService.class)
+                .GetNewsReverse(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<NewsResq>() {
+                .subscribe(new Subscriber<NewDetailresq>() {
                     @Override
                     public void onCompleted() {
 
@@ -33,8 +33,8 @@ public class NewsPresenter extends BasePresenter<NewsViewI> {
                     }
 
                     @Override
-                    public void onNext(NewsResq newsResq) {
-                        mMvpView.getNewsDatasuccessed(newsResq);
+                    public void onNext(NewDetailresq newsDetailService) {
+
                     }
                 });
 

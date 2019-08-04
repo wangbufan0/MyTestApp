@@ -1,4 +1,4 @@
-package com.example.mytestapp.ui.news.domain;
+package com.example.mytestapp.ui.news.home.domain;
 
 
 import retrofit2.http.GET;
