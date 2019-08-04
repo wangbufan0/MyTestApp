@@ -1,4 +1,4 @@
-package com.example.mytestapp.ui.news.binder.holder;
+package com.example.mytestapp.ui.news.home.binder.holder;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mytestapp.R;
-import com.example.mytestapp.ui.news.domain.NewsResq;
+import com.example.mytestapp.ui.news.detail.NewsDetailActivity;
+import com.example.mytestapp.ui.news.home.domain.NewsResq;
 import com.example.mytestapp.utils.GLideUtil;
 
 public class NewsViewHolder extends RecyclerView.ViewHolder {
@@ -31,9 +32,16 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
             imageView=itemView.findViewById(R.id.iv1);
         }
 
-        public void postDataToUI(NewsResq.TopStoriesBean Data){
+        public void postDataToUI(final NewsResq.StoriesBean Data){
             textView.setText(Data.getTitle());
-            GLideUtil.loadImageViewLoding(itemView.getContext(),Data.getImage(),imageView);
+            GLideUtil.loadImageViewLoding(itemView.getContext(),Data.getImages().get(0),imageView);
+            itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    NewsDetailActivity.launch(itemView.getContext(),Data.getId());
+                }
+            });
         }
 
 }

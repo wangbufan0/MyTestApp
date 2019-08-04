@@ -14,9 +14,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
 import com.example.mytestapp.R;
 import com.example.mytestapp.manager.user.UserManager;
-import com.example.mytestapp.ui.homepage.HomepageFragment;
+import com.example.mytestapp.ui.homepage.home.fragment.HomepageFragment;
 import com.example.mytestapp.ui.login.LoginActivity;
-import com.example.mytestapp.ui.news.fragment.NewsFragment;
+import com.example.mytestapp.ui.news.home.fragment.NewsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;

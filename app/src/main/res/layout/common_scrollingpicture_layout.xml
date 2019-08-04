@@ -8,27 +8,37 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp" />
 
 
-    <!--<com.example.my_app.zhuye.Myviewpager-->
-        <!--android:id="@+id/viewpager"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dip"
+        android:layout_gravity="bottom"
+        android:background="#33000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_alignParentBottom="true">
 
-    <!-- 小点点 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="35dip"
+            android:layout_weight="8"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dip"
+            android:textColor="@color/color_bai" />
+        <!-- 小点点 -->
         <LinearLayout
             android:id="@+id/point_group"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/color_touming"
             android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@color/color_touming">
-        </LinearLayout>
-
+            />
+    </LinearLayout>
 
 </RelativeLayout>
