@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/color_bai">
+
+    <Button
+        android:id="@+id/bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
+        android:textSize="15dp"
+        android:textColor="#FF888888"
+        android:stateListAnimator="@null"
+        android:paddingRight="10dp"
+        android:gravity="left|center"
+        android:background="@drawable/person_button_bg" />
+
+
+        <View
+            android:id="@+id/item_xian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_hui_2"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="40dp"/>
+
+
+</LinearLayout>

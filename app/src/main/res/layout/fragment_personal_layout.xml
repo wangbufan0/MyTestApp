@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:gravity="center|left"
+        android:background="@color/color_bai"
+        android:paddingLeft="20dp"
+        >
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:id="@+id/mTv_denglu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登陆/注册"
+            android:paddingLeft="20dp"/>
+    </LinearLayout>
+
+    <com.example.mytestapp.ui.personal.widget.PersonalButton
+        android:id="@+id/geren_xiaoxi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:show_text="消息"
+        app:show_leftimg="@drawable/icon_personal_message"
+        app:show_bottomline="true"
+        android:layout_marginTop="10dp"/>
+
+    <com.example.mytestapp.ui.personal.widget.PersonalButton
+        android:id="@+id/geren_shoucang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:show_text="收藏"
+        app:show_leftimg="@drawable/icon_personal_collection"
+        app:show_bottomline="false" />
+
+
+    <com.example.mytestapp.ui.personal.widget.PersonalButton
+        android:id="@+id/geren_shezhi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:show_text="设置"
+        app:show_leftimg="@drawable/icon_personal_setting"
+        app:show_bottomline="false"
+        android:layout_marginTop="10dp"/>
+
+
+
+
+</LinearLayout>
