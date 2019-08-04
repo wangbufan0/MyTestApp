@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@color/color_bai">
+
+    <ImageView
+        android:id="@+id/mIv_touxiang"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:id="@+id/mll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="8dp">
+
+        <TextView
+            android:id="@+id/mTv_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="wangbufan"
+            android:textColor="@color/color_lan"
+            android:padding="4dp"/>
+        <TextView
+            android:id="@+id/mTv_neirong"
+            android:maxLines="5"
+            android:text="这是一个测试"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"/>
+
+        <com.jaeger.ninegridimageview.NineGridImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/mNiv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imgGap="4dp"
+            app:maxSize="9"
+            app:showStyle="fill"
+            app:singleImgSize="1000dp" />
+    </LinearLayout>
+</LinearLayout>
