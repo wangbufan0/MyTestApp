@@ -30,8 +30,6 @@ public class ScrollingPictureLayout extends LinearLayout {
     private LinearLayout pointGroup;
     private TextView textView;
 
-
-
     // 图片资源
     private ArrayList<ImageView> imageList;
     private List<String> titleList;

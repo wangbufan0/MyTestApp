@@ -17,6 +17,7 @@ import com.example.mytestapp.manager.user.UserManager;
 import com.example.mytestapp.ui.homepage.home.fragment.HomepageFragment;
 import com.example.mytestapp.ui.login.LoginActivity;
 import com.example.mytestapp.ui.news.home.fragment.NewsFragment;
+import com.example.mytestapp.ui.personal.PersonalFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
         fragments.add(new HomepageFragment());
         fragments.add(new NewsFragment());
         fragments.add(new HomepageFragment());
-        fragments.add(new HomepageFragment());
+        fragments.add(new PersonalFragment());
 
         ///添加一行注释
 
