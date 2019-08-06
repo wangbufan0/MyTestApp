@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.mytestapp.Base.LoadingProgressDialog;
 import com.example.mytestapp.Base.Title.TitleLayoutI;
 import com.example.mytestapp.Base.View.BaseView;
 import com.example.mytestapp.R;
@@ -18,14 +19,13 @@ import com.example.mytestapp.utils.ToastUtil;
 
 import me.bakumon.statuslayoutmanager.library.DefaultOnStatusChildClickListener;
 import me.bakumon.statuslayoutmanager.library.StatusLayoutManager;
-import retrofit2.Retrofit;
 
 public abstract class BaseMvpFragment extends Fragment implements BaseView {
 
     protected TitleLayoutI titleLayoutI;
     protected FrameLayout rootView;
     protected StatusLayoutManager statusLayoutManager;
-    protected Retrofit retrofit;
+    protected LoadingProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -74,6 +74,29 @@ public abstract class BaseMvpFragment extends Fragment implements BaseView {
     @Override
     public void showToast(String s) {
         ToastUtil.showToast(getContext(),s);
+    }
+
+
+    @Override
+    public void hideWaitDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void showWaitDialog() {
+        showWaitDialog("");
+    }
+
+    @Override
+    public void showWaitDialog(String text) {
+        if (progressDialog == null) {
+            progressDialog = new LoadingProgressDialog(getContext());
+        }
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
     }
 
     public View findViewById(int idRes){return getView().findViewById(idRes);}

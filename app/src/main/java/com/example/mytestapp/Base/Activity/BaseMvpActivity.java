@@ -9,6 +9,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mytestapp.Base.LoadingProgressDialog;
 import com.example.mytestapp.Base.Title.TitleLayoutI;
 import com.example.mytestapp.Base.View.BaseView;
 import com.example.mytestapp.R;
@@ -24,6 +25,9 @@ public abstract class BaseMvpActivity extends AppCompatActivity implements BaseV
     protected FrameLayout rootView;
     protected StatusLayoutManager statusLayoutManager;
     protected Retrofit retrofit;
+    protected LoadingProgressDialog progressDialog;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +78,29 @@ public abstract class BaseMvpActivity extends AppCompatActivity implements BaseV
     }
 
     protected abstract void initPresenter();
+
+
+    @Override
+    public void hideWaitDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void showWaitDialog() {
+        showWaitDialog("");
+    }
+
+    @Override
+    public void showWaitDialog(String text) {
+        if (progressDialog == null) {
+            progressDialog = new LoadingProgressDialog(this);
+        }
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
+    }
 
 
     protected void initBar() {

@@ -32,6 +32,9 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
 
     private int lastfragment;
 
+
+
+
     public static void launch(Context context){
         Intent intent = new Intent(context, BaseActivity.class);
         context.startActivity(intent);
@@ -139,4 +142,5 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
         }
         return false;
     }
+
 }

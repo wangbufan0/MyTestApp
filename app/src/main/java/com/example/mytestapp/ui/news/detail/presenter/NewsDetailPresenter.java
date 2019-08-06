@@ -1,6 +1,6 @@
 package com.example.mytestapp.ui.news.detail.presenter;
 
-import com.example.mytestapp.Base.Retrofit.myRest;
+import com.example.mytestapp.Base.Retrofit.MyRest;
 import com.example.mytestapp.Base.presenter.BasePresenter;
 import com.example.mytestapp.ui.news.detail.domain.NewDetailresq;
 import com.example.mytestapp.ui.news.detail.domain.NewsDetailService;
@@ -16,7 +16,7 @@ public class NewsDetailPresenter extends BasePresenter<NewsViewI> {
 
     public void getData(String id) {
 
-        myRest.getInstance()
+        MyRest.getInstance()
                 .create(NewsDetailService.class)
                 .GetNewsReverse(id)
                 .subscribeOn(Schedulers.io())
