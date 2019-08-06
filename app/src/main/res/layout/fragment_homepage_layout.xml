@@ -9,15 +9,18 @@
     
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants">
             <com.example.mytestapp.ui.homepage.home.widget.ScrollingPictureLayout
                 android:id="@+id/scrolling_picture"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
 
             <LinearLayout
                 android:id="@+id/mll2"

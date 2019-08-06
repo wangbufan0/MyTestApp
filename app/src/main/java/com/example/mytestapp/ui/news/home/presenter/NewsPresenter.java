@@ -1,14 +1,14 @@
 package com.example.mytestapp.ui.news.home.presenter;
 
-import com.example.mytestapp.Base.Retrofit.MyRest;
+import com.example.mytestapp.Base.Retrofit.BaseRetrofit;
 import com.example.mytestapp.Base.observer.MyObserver;
 import com.example.mytestapp.Base.presenter.BasePresenter;
 import com.example.mytestapp.ui.news.home.domain.NewsResq;
 import com.example.mytestapp.ui.news.home.domain.NewsService;
 import com.example.mytestapp.ui.news.home.view.NewsViewI;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class NewsPresenter extends BasePresenter<NewsViewI> {
@@ -16,7 +16,7 @@ public class NewsPresenter extends BasePresenter<NewsViewI> {
 
     public void getNesDatas() {
 
-        MyRest.getInstance()
+        BaseRetrofit.getInstance()
                 .create(NewsService.class)
                 .GetNewsReverse()
                 .subscribeOn(Schedulers.io())

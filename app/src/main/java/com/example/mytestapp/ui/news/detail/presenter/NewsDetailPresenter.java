@@ -1,39 +1,30 @@
 package com.example.mytestapp.ui.news.detail.presenter;
 
-import com.example.mytestapp.Base.Retrofit.MyRest;
+
+import com.example.mytestapp.Base.Retrofit.BaseRetrofit;
+import com.example.mytestapp.Base.observer.MyObserver;
 import com.example.mytestapp.Base.presenter.BasePresenter;
 import com.example.mytestapp.ui.news.detail.domain.NewDetailresq;
 import com.example.mytestapp.ui.news.detail.domain.NewsDetailService;
 import com.example.mytestapp.ui.news.home.view.NewsViewI;
 
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class NewsDetailPresenter extends BasePresenter<NewsViewI> {
 
 
     public void getData(String id) {
 
-        MyRest.getInstance()
+        BaseRetrofit.getInstance()
                 .create(NewsDetailService.class)
                 .GetNewsReverse(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<NewDetailresq>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
+                .subscribe(new MyObserver<NewDetailresq>(this) {
 
                     @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(NewDetailresq newsDetailService) {
+                    public void onSuccess(NewDetailresq newDetailresq) {
 
                     }
                 });

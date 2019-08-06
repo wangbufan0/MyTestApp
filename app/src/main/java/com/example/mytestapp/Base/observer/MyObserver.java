@@ -5,9 +5,13 @@ import android.text.TextUtils;
 
 import com.example.mytestapp.Base.presenter.BasePresenter;
 
-import rx.Subscriber;
 
-public abstract class MyObserver<T> extends Subscriber<T> {
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
+
+public abstract class MyObserver<T> implements Observer<T> {
     private BasePresenter mBasePresenter;
     private boolean isShowLoading = false;  //默认不弹loading
 
@@ -21,10 +25,6 @@ public abstract class MyObserver<T> extends Subscriber<T> {
         this.isShowLoading = isShowLoading;
     }
 
-    @Override
-    public void onCompleted() {
-
-    }
 
     @Override
     public void onError(Throwable throwable) {
@@ -48,7 +48,7 @@ public abstract class MyObserver<T> extends Subscriber<T> {
     }
 
     @Override
-    public void onStart() {
+    public void onSubscribe(Disposable d) {
         if (isShowLoading && null != mBasePresenter.getView()) {
             if (TextUtils.isEmpty(getLoadingMsg())) {
                 mBasePresenter.getView().showWaitDialog();
@@ -56,6 +56,12 @@ public abstract class MyObserver<T> extends Subscriber<T> {
                 mBasePresenter.getView().showWaitDialog(getLoadingMsg());
             }
         }
+    }
+
+
+    @Override
+    public void onComplete() {
+
     }
 
     public String getLoadingMsg() {
