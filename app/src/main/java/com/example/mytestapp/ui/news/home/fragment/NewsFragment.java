@@ -45,4 +45,8 @@ public class NewsFragment extends BaseListMvpFragment<NewsResq.StoriesBean> impl
     public void getNewsDatasuccessed(NewsResq Datas) {
         loadDataSuccessList(Datas.getStories(),mCurrentPageNumber,false);
     }
+
+    public void refresh(){
+        mRefreshLayout.autoRefresh();
+    }
 }

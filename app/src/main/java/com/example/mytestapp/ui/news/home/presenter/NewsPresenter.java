@@ -21,7 +21,7 @@ public class NewsPresenter extends BasePresenter<NewsViewI> {
                 .GetNewsReverse()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<NewsResq>(this, true) {
+                .subscribe(new MyObserver<NewsResq>(this) {
                     @Override
                     public void onSuccess(NewsResq newsResq) {
                         mMvpView.getNewsDatasuccessed(newsResq);
