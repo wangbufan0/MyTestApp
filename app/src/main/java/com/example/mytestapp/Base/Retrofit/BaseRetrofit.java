@@ -13,14 +13,21 @@ public class BaseRetrofit {
     private static BaseRetrofit mRest;
     private Retrofit retrofit;
     private static final int DEFAULT_TIME = 10;    //默认超时时间
-    private final long RETRY_TIMES = 1;   //重订阅次数
+    private static final long RETRY_TIMES = 1;   //重订阅次数
 
+    public static int getDefaultTime() {
+        return DEFAULT_TIME;
+    }
 
     public static BaseRetrofit getInstance() {
         if (mRest == null) {
             mRest = new BaseRetrofit();
         }
         return mRest;
+    }
+
+    public static long getRETRY_TIMES() {
+        return RETRY_TIMES;
     }
 
     private BaseRetrofit() {

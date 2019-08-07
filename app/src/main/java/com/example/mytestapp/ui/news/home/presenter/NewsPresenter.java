@@ -2,13 +2,11 @@ package com.example.mytestapp.ui.news.home.presenter;
 
 import com.example.mytestapp.Base.Retrofit.BaseRetrofit;
 import com.example.mytestapp.Base.observer.MyObserver;
+import com.example.mytestapp.Base.observer.RxSchedulers;
 import com.example.mytestapp.Base.presenter.BasePresenter;
 import com.example.mytestapp.ui.news.home.domain.NewsResq;
 import com.example.mytestapp.ui.news.home.domain.NewsService;
 import com.example.mytestapp.ui.news.home.view.NewsViewI;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class NewsPresenter extends BasePresenter<NewsViewI> {
@@ -19,8 +17,7 @@ public class NewsPresenter extends BasePresenter<NewsViewI> {
         BaseRetrofit.getInstance()
                 .create(NewsService.class)
                 .GetNewsReverse()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxSchedulers.<NewsResq>compose())
                 .subscribe(new MyObserver<NewsResq>(this) {
                     @Override
                     public void onSuccess(NewsResq newsResq) {
