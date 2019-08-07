@@ -41,17 +41,13 @@ dependencies {
     //glide包，图片
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-    //okhttp包，网络
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'com.squareup.okio:okio:1.14.0'
-    // Retrofit库
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+
+
 
     //注解包，Helper
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.nineoldandroids:library:2.4.0'
-    //json包
-    implementation 'com.alibaba:fastjson:1.2.10'
+
     //九宫格
     implementation 'com.jaeger.ninegridimageview:library:1.0.2'
     //图片缩放
@@ -66,10 +62,16 @@ dependencies {
     //界面显示框架（无数据，无网络等）
     implementation 'com.github.Bakumon:StatusLayoutManager:1.0.1'
 
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
 
-    implementation 'io.reactivex:rxandroid:1.1.0'
+
+    //网络请求 retrofit+okhttp+gson
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
 
 }

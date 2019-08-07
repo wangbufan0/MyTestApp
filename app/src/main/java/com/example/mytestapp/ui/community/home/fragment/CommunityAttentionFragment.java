@@ -45,4 +45,9 @@ public class CommunityAttentionFragment extends BaseListMvpFragment<CommunityAtt
     public void getDataSuccessed(List<CommunityAttentionResp> data) {
         loadDataSuccessList(data,mCurrentPageNumber,false);
     }
+
+    public void refresh(){
+        mRecyclerView.smoothScrollToPosition(0);
+        mRefreshLayout.autoRefresh();
+    }
 }

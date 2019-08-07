@@ -121,6 +121,9 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
                 if (lastfragment != 1) {
                     switchFragment(lastfragment, 1);
                     lastfragment = 1;
+                }else{
+                    NewsFragment fragment= (NewsFragment) fragments.get(1);
+                    fragment.refresh();
                 }
                 return true;
             }
@@ -128,6 +131,10 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
                 if (lastfragment != 2) {
                     switchFragment(lastfragment, 2);
                     lastfragment = 2;
+                }else{
+                    CommunityFragment fragment= (CommunityFragment) fragments.get(2);
+                    fragment.refresh();
+
                 }
                 return true;
             }

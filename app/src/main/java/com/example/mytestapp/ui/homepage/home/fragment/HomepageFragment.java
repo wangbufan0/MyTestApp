@@ -55,6 +55,7 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
         HomepageBinder homepageBinder = new HomepageBinder();
         mAdapter.register(HomepageResp.StoriesBean.class,homepageBinder);
         recyclerView.setAdapter(mAdapter);
+        loadData(1);
     }
 
     @Override
@@ -67,12 +68,6 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
         return R.layout.fragment_homepage_layout;
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadData(1);
-    }
 
     @Override
     public void onClick(View view) {

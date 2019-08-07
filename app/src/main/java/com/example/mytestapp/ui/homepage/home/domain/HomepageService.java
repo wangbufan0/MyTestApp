@@ -1,8 +1,8 @@
 package com.example.mytestapp.ui.homepage.home.domain;
 
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
-import rx.Observable;
 
 public interface HomepageService {
 

@@ -78,4 +78,17 @@ public class CommunityFragment extends BaseMvpFragment {
     protected int getLayoutRes() {
         return R.layout.fragment_community_layout;
     }
+
+
+
+    public void refresh(){
+        int i=viewPager.getCurrentItem();
+        if(i==0){
+            CommunityAttentionFragment communityAttentionFragment = (CommunityAttentionFragment) fragments.get(0);
+            communityAttentionFragment.refresh();
+        }else{
+            CommunityAttentionFragment communityAttentionFragment = (CommunityAttentionFragment) fragments.get(1);
+            communityAttentionFragment.refresh();
+        }
+    }
 }
