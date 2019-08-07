@@ -43,13 +43,13 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
 
-
     //注解包，Helper
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.nineoldandroids:library:2.4.0'
 
     //九宫格
     implementation 'com.jaeger.ninegridimageview:library:1.0.2'
+
     //图片缩放
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     //RecyclerView 适配器
@@ -63,7 +63,6 @@ dependencies {
     implementation 'com.github.Bakumon:StatusLayoutManager:1.0.1'
 
 
-
     //网络请求 retrofit+okhttp+gson
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
@@ -72,6 +71,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //album 图片选择
+    implementation 'com.yanzhenjie:album:2.1.2'
 
 
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,10 +20,16 @@ import com.example.mytestapp.ui.homepage.home.fragment.HomepageFragment;
 import com.example.mytestapp.ui.login.LoginActivity;
 import com.example.mytestapp.ui.news.home.fragment.NewsFragment;
 import com.example.mytestapp.ui.personal.PersonalFragment;
+import com.example.mytestapp.utils.GLideUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.yanzhenjie.album.Album;
+import com.yanzhenjie.album.AlbumConfig;
+import com.yanzhenjie.album.AlbumFile;
+import com.yanzhenjie.album.AlbumLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class BaseActivity extends BaseMvpActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -80,6 +87,7 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
         getSupportFragmentManager().beginTransaction().replace(R.id.ll_home,fragments.get(0)).show(fragments.get(0)).commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        initAlbum();
     }
 
     @Override
@@ -148,6 +156,26 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
 
         }
         return false;
+    }
+
+
+    private void initAlbum() {
+        Album.initialize(AlbumConfig.newBuilder(this)
+                .setAlbumLoader(new AlbumLoader() {
+                    @Override
+                    public void load(ImageView imageView, AlbumFile albumFile) {
+                        load(imageView, albumFile.getPath());
+                    }
+
+                    @Override
+                    public void load(ImageView imageView, String url) {
+
+                        GLideUtil.loadImageViewLoding(imageView.getContext(),url,imageView);
+                    }
+                })
+                .setLocale(Locale.getDefault())
+                .build()
+        );
     }
 
 }
