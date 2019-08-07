@@ -75,5 +75,8 @@ dependencies {
     //album 图片选择
     implementation 'com.yanzhenjie:album:2.1.2'
 
+    //oss
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.4.5'
+
 
 }

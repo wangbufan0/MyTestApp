@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.example.mytestapp.Base.fragment.BaseMvpFragment;
 import com.example.mytestapp.R;
 import com.example.mytestapp.manager.user.UserManager;
+import com.example.mytestapp.upload.UploadHelper;
 import com.example.mytestapp.utils.GLideUtil;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
@@ -45,26 +46,7 @@ public class PersonalFragment extends BaseMvpFragment implements View.OnClickLis
         //头像加载
         GLideUtil.loadImageViewRound(getContext(), urlImage, miv);
 
-        miv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Album.image(getContext())
-                        .singleChoice()
-                        .camera(true)
-                        .columnCount(2)
-                        .widget(Widget.newDarkBuilder(getContext())
-                                .title("图片选择")
-                                .build())
-                        .onResult(new Action<ArrayList<AlbumFile>>() {
-                            @Override
-                            public void onAction(@NonNull ArrayList<AlbumFile> result) {
-                                if (isValidData(result)) {
-                                    GLideUtil.loadImageViewRound(getContext(), result.get(0).getPath(), miv);
-                                }
-                            }
-                        }).start();
-            }
-        });
+        miv.setOnClickListener(this);
 
 
         findViewById(R.id.geren_xiaoxi).setOnClickListener(this);
@@ -77,6 +59,32 @@ public class PersonalFragment extends BaseMvpFragment implements View.OnClickLis
         }
 
     }
+
+
+    private void openAlbum(){
+        Album.image(getContext())
+                .singleChoice()
+                .camera(true)
+                .columnCount(2)
+                .widget(Widget.newDarkBuilder(getContext())
+                        .title("图片选择")
+                        .build())
+                .onResult(new Action<ArrayList<AlbumFile>>() {
+                    @Override
+                    public void onAction(@NonNull ArrayList<AlbumFile> result) {
+                        if (isValidData(result)) {
+                            UploadHelper uploadHelper = new UploadHelper();
+
+
+                            String url= uploadHelper.uploadImage(result.get(0).getPath());
+                            GLideUtil.loadImageViewRound(getContext(), url, miv);
+                        }
+                    }
+                }).start();
+    }
+
+
+
 
     @Override
     protected void loadData(int page) {
@@ -98,6 +106,10 @@ public class PersonalFragment extends BaseMvpFragment implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        if(v.getId()==R.id.iv){
+            openAlbum();
+        }
+
         v = (View) v.getParent().getParent();
         switch (v.getId()) {
             case R.id.geren_xiaoxi:
