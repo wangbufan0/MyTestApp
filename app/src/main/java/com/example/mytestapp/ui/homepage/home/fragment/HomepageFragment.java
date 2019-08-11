@@ -33,6 +33,7 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
     @Override
     protected void initPresenter() {
         homePagePresenter= PresenterProviders.of(this,HomePagePresenter.class);
+        loadData(1);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI,V
         HomepageBinder homepageBinder = new HomepageBinder();
         mAdapter.register(HomepageResp.StoriesBean.class,homepageBinder);
         recyclerView.setAdapter(mAdapter);
-        loadData(1);
+
     }
 
     @Override

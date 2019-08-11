@@ -41,8 +41,8 @@ public abstract class BaseMvpFragment extends Fragment implements BaseView {
         rootView.addView(inflate(getLayoutRes()), new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         initStatusLayout();
         initBar();
-        initPresenter();
         initView();
+        initPresenter();
     }
 
 

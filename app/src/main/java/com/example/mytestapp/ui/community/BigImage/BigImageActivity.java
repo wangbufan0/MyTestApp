@@ -117,4 +117,6 @@ public class BigImageActivity extends BaseMvpActivity {
     protected int getLayoutRes() {
         return R.layout.activity_bigimage_layout;
     }
+
+
 }

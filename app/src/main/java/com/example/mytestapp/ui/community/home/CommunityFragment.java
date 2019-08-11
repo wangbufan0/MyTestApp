@@ -91,4 +91,6 @@ public class CommunityFragment extends BaseMvpFragment {
             communityAttentionFragment.refresh();
         }
     }
+
+
 }

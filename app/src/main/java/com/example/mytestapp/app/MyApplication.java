@@ -6,15 +6,15 @@ import android.content.Context;
 public class MyApplication extends Application {
 
 
+    private static Context context = null;
 
-
-    private static Context context=null;
-    public static Context getContext(){
+    public static Context getContext() {
         return context;
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        context=getApplicationContext();
+        context = getApplicationContext();
     }
 }

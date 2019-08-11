@@ -9,13 +9,7 @@ import androidx.annotation.NonNull;
 import com.example.mytestapp.R;
 
 
-/**
- * Date:  2019-06-06
- * Time:  14:54
- * Author: jianglong
- * -----------------------------
- * MISSION
- */
+
 public class LoadingProgressDialog extends Dialog {
     public LoadingProgressDialog(@NonNull Context context) {
         this(context, 0);
