@@ -3,6 +3,7 @@ package com.example.mytestapp.ui.community.BigImage;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
+import com.example.mytestapp.Base.widget.MyBottomSheetDialog;
 import com.example.mytestapp.R;
+import com.example.mytestapp.load.image.LoadImage;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
@@ -31,13 +34,20 @@ public class BigImageActivity extends BaseMvpActivity {
     private List<String> paths;//存放图片url的数组
 
 
-    public static void launch(Context context,int index,List<String> data) {
+    public static void launch(Context context, int index, List<String> data) {
 
         Intent intent = new Intent(context, BigImageActivity.class);
         intent.putExtra("position", index);
         intent.putStringArrayListExtra("paths", (ArrayList<String>) data);
         context.startActivity(intent);
         ((Activity) context).overridePendingTransition(android.R.anim.fade_in, 0);
+
+    }
+
+    public static void launch(Context context, String data) {
+        List<String> list = new ArrayList<>();
+        list.add(data);
+        launch(context, 0, list);
 
     }
 
@@ -77,12 +87,16 @@ public class BigImageActivity extends BaseMvpActivity {
 
             @NonNull
             @Override
-            public Object instantiateItem(@NonNull ViewGroup container, int position) {
+            public Object instantiateItem(@NonNull ViewGroup container, final int position) {
                 View view = LayoutInflater.from(BigImageActivity.this).inflate(R.layout.item_bigimage_layout, null);
                 icon = view.findViewById(R.id.pv_image);
                 tvIndex = view.findViewById(R.id.tv_index);
-                icon.setBackgroundColor(getResources().getColor(R.color.color_hei));
-                tvIndex.setText((position + 1) + "/" + paths.size());
+
+                icon.setBackgroundColor(Color.parseColor("#000000"));
+                if (position==0)
+                    tvIndex.setVisibility(View.GONE);
+                else
+                    tvIndex.setText((position + 1) + "/" + paths.size());
 
                 Glide.with(BigImageActivity.this)
                         .load(paths.get(position))
@@ -95,6 +109,22 @@ public class BigImageActivity extends BaseMvpActivity {
                         overridePendingTransition(0, android.R.anim.fade_out);
                     }
                 });
+                icon.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        final MyBottomSheetDialog dialog= new MyBottomSheetDialog(icon.getContext(),"保存图片");
+                        dialog.getViews().get(0).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                LoadImage.DownloadImage(icon.getContext(),paths.get(position));
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                        return true;
+                    }
+                });
+
                 container.addView(view);
                 return view;
             }

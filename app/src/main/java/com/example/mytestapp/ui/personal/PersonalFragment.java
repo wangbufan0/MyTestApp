@@ -8,8 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.mytestapp.Base.fragment.BaseMvpFragment;
+import com.example.mytestapp.Base.widget.MyBottomSheetDialog;
 import com.example.mytestapp.R;
 import com.example.mytestapp.manager.user.UserManager;
+import com.example.mytestapp.ui.community.BigImage.BigImageActivity;
 import com.example.mytestapp.upload.UploadHelper;
 import com.example.mytestapp.utils.GLideUtil;
 import com.yanzhenjie.album.Action;
@@ -18,11 +20,15 @@ import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.api.widget.Widget;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonalFragment extends BaseMvpFragment implements View.OnClickListener {
 
     private ImageView miv;
     private TextView denglu;
+    private MyBottomSheetDialog bottomSheetDialog;
+    String[] s={"查看大图","更换图片"};
+    String urlImage;
 
     @Override
     protected void initPresenter() {
@@ -41,7 +47,7 @@ public class PersonalFragment extends BaseMvpFragment implements View.OnClickLis
         miv = (ImageView) findViewById(R.id.iv);
 
 
-        String urlImage = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561805219659&di=21aafa302d919a21be27a7acfde39a18&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F61%2F05%2F01300542392970153122058010203_s.jpg";
+       urlImage = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561805219659&di=21aafa302d919a21be27a7acfde39a18&imgtype=0&src=http%3A%2F%2Fa4.att.hudong.com%2F61%2F05%2F01300542392970153122058010203_s.jpg";
 
         //头像加载
         GLideUtil.loadImageViewRound(getContext(), urlImage, miv);
@@ -107,7 +113,25 @@ public class PersonalFragment extends BaseMvpFragment implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.iv){
-            openAlbum();
+            if(bottomSheetDialog==null)
+                bottomSheetDialog=new MyBottomSheetDialog(getContext(),s);
+            List<View> views=bottomSheetDialog.getViews();
+            views.get(0).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BigImageActivity.launch(getContext(),urlImage);
+                    bottomSheetDialog.dismiss();
+                }
+            });
+            views.get(1).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openAlbum();
+                    bottomSheetDialog.dismiss();
+                }
+            });
+            bottomSheetDialog.show();
+            //openAlbum();
         }
 
         v = (View) v.getParent().getParent();
