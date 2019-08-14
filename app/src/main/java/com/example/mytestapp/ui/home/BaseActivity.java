@@ -84,7 +84,11 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
 
         bottomNavigationView=findViewById(R.id.bnv_navigation);
         lastfragment=0;
-        getSupportFragmentManager().beginTransaction().replace(R.id.ll_home,fragments.get(0)).show(fragments.get(0)).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.ll_home,fragments.get(0))
+                .show(fragments.get(0))
+                .commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         initAlbum();

@@ -11,11 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_bai"
-        app:srlEnableLoadMore="true">
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        app:srlEnablePreviewInEditMode="true"
+        app:srlEnableLoadMore="true">
+        <com.scwang.smartrefresh.header.BezierCircleHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/common_recyclerView"
@@ -24,7 +25,7 @@
             android:background="@color/color_hui_1"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        <com.scwang.smartrefresh.layout.footer.BallPulseFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

@@ -21,6 +21,7 @@ public abstract class BaseListMvpActivity extends BaseMvpActivity {
         this.mRecyclerView.setAdapter(this.mAdapter);
     }
 
+
     protected abstract void registerMultiType();
 
     @Override

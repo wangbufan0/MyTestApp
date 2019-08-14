@@ -8,9 +8,10 @@ import com.example.mytestapp.Base.decoration.BaseItemDecoration;
 import com.example.mytestapp.R;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import java.util.ArrayList;
+
 import java.util.List;
 
+import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
@@ -18,14 +19,15 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
     public RefreshLayout mRefreshLayout;
     protected RecyclerView mRecyclerView;
     protected MultiTypeAdapter mAdapter;
-    protected List<T> listData = new ArrayList<>();
+    protected Items items;
     protected int mCurrentPageNumber = 1;
 
     @Override
     protected void initView() {
         initRecyclerView();
         mAdapter=new MultiTypeAdapter();
-        mAdapter.setItems(listData);
+        items=new Items();
+        mAdapter.setItems(items);
         registerMultiType();
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -64,11 +66,11 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
         if (newListData == null) return;
         if (isRefreshAction(currentPage)) {
             //下拉刷新操作,清除现有数据
-            listData.clear();
+            items.clear();
         }
         //添加数据
-        listData.addAll(newListData);
-        if (listData.isEmpty()) {
+        items.addAll(newListData);
+        if (items.isEmpty()) {
             statusLayoutManager.showEmptyLayout();
         } else {
             statusLayoutManager.showSuccessLayout();

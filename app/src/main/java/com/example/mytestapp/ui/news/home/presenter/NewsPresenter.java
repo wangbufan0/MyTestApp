@@ -12,6 +12,7 @@ import com.example.mytestapp.ui.news.home.view.NewsViewI;
 public class NewsPresenter extends BasePresenter<NewsViewI> {
 
 
+
     public void getNesDatas() {
 
         BaseRetrofit.getInstance()
@@ -21,6 +22,7 @@ public class NewsPresenter extends BasePresenter<NewsViewI> {
                 .subscribe(new MyObserver<NewsResq>(this) {
                     @Override
                     public void onSuccess(NewsResq newsResq) {
+                        assert mMvpView != null;
                         mMvpView.getNewsDatasuccessed(newsResq);
                     }
                 });

@@ -18,12 +18,21 @@ import com.example.mytestapp.utils.ToastUtil;
 import me.bakumon.statuslayoutmanager.library.DefaultOnStatusChildClickListener;
 import me.bakumon.statuslayoutmanager.library.StatusLayoutManager;
 
+/**
+ * @Date : 2019-08-12
+ * @Time : 15:06
+ * @author : wangbufan
+ *-------------------------------
+ */
+
+
 public abstract class BaseMvpActivity extends AppCompatActivity implements BaseView {
 
     protected TitleLayoutI titleLayoutI;
     protected FrameLayout rootView;
     protected StatusLayoutManager statusLayoutManager;
     protected LoadingProgressDialog progressDialog;
+
 
 
     @Override
