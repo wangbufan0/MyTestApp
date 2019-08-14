@@ -16,7 +16,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.mytestapp.R;
-import com.example.mytestapp.ui.homepage.home.domain.HomepageResp;
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp1;
 import com.example.mytestapp.ui.news.detail.NewsDetailActivity;
 import com.example.mytestapp.utils.GLideUtil;
 
@@ -35,7 +35,7 @@ public class ScrollingPictureLayout extends LinearLayout {
     private List<String> titleList;
     protected int lastPosition;
     private boolean isRunning = false;
-    List<Integer> id;
+    List<String> url;
 
 
     public ScrollingPictureLayout(Context context) {
@@ -52,7 +52,7 @@ public class ScrollingPictureLayout extends LinearLayout {
 
         imageList = new ArrayList<>();
         titleList=new ArrayList<>();
-        id=new ArrayList<>();
+        url=new ArrayList<>();
         ImageView image = new ImageView(context);
 
 
@@ -109,7 +109,7 @@ public class ScrollingPictureLayout extends LinearLayout {
     private class pagerImageClick implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            NewsDetailActivity.launch(context,id.get(lastPosition));
+            NewsDetailActivity.launch(context,url.get(lastPosition));
         }
     }
 
@@ -120,7 +120,7 @@ public class ScrollingPictureLayout extends LinearLayout {
         isRunning=false;
     }
 
-    public void PostDataToUI(final List<HomepageResp.TopStoriesBean> datas){
+    public void PostDataToUI(final List<HomepageResp1.ResultBean.DataBean> datas){
 
 
         isRunning=false;
@@ -128,15 +128,15 @@ public class ScrollingPictureLayout extends LinearLayout {
         handler.removeMessages(0);
         imageList.clear();
         titleList.clear();
-        id.clear();
+        url.clear();
         for (int i = 0; i < datas.size(); i++) { // 初始化图片资源
             ImageView image = new ImageView(context);
-            GLideUtil.loadImageViewLoding(context,datas.get(i).getImage(),image);
+            GLideUtil.loadImageViewLoding(context,datas.get(i).getThumbnail_pic_s(),image);
             image.setOnClickListener(new pagerImageClick());
             image.setScaleType(ImageView.ScaleType.FIT_XY);
             imageList.add(image);
             titleList.add(datas.get(i).getTitle());
-            id.add(datas.get(i).getId());
+            url.add(datas.get(i).getUrl());
             // 添加指示点
             ImageView point = new ImageView(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.WRAP_CONTENT,

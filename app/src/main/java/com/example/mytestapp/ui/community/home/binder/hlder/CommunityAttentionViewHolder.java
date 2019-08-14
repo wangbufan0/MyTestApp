@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mytestapp.R;
 import com.example.mytestapp.ui.community.BigImage.BigImageActivity;
-import com.example.mytestapp.ui.community.home.domain.CommunityAttentionResp;
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp1;
+import com.example.mytestapp.ui.news.detail.NewsDetailActivity;
 import com.example.mytestapp.utils.GLideUtil;
 import com.jaeger.ninegridimageview.NineGridImageView;
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommunityAttentionViewHolder extends RecyclerView.ViewHolder {
@@ -39,14 +41,15 @@ public class CommunityAttentionViewHolder extends RecyclerView.ViewHolder {
         touxiang = itemView.findViewById(R.id.mIv_touxiang);
         nineGridImageView = itemView.findViewById(R.id.mNiv);
 
+
     }
 
-    public void postDataToUI(CommunityAttentionResp data){
+    public void postDataToUI(final HomepageResp1.ResultBean.DataBean data){
 
-        id.setText(data.getId());
-        neirong.setText(data.getNeirong());
-
-        GLideUtil.loadImageViewRound(itemView.getContext(),data.getUrlTouxiang(),touxiang);
+//        id.setText(data.getId());
+        neirong.setText(data.getTitle());
+//
+//        GLideUtil.loadImageViewRound(itemView.getContext(),data.getUrlTouxiang(),touxiang);
 
         //图片适配器
         NineGridImageViewAdapter<String> mAdapter = new NineGridImageViewAdapter<String>() {
@@ -67,8 +70,18 @@ public class CommunityAttentionViewHolder extends RecyclerView.ViewHolder {
             }
         };
         nineGridImageView.setAdapter(mAdapter);
-        nineGridImageView.setImagesData(data.getUrlNineIv());
 
+        List<String> url = new ArrayList<>();
+        url.add(data.getThumbnail_pic_s());
+        if(data.getThumbnail_pic_s02()!=null)url.add(data.getThumbnail_pic_s02());
+        if(data.getThumbnail_pic_s03()!=null)url.add(data.getThumbnail_pic_s03());
+        nineGridImageView.setImagesData(url);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NewsDetailActivity.launch(itemView.getContext(),data.getUrl());
+            }
+        });
 
 
     }

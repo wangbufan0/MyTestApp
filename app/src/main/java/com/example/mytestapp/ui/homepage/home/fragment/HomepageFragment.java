@@ -9,7 +9,7 @@ import com.example.mytestapp.Base.fragment.BaseMvpFragment;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
 import com.example.mytestapp.R;
 import com.example.mytestapp.ui.homepage.home.binder.HomepageBinder;
-import com.example.mytestapp.ui.homepage.home.domain.HomepageResp;
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp1;
 import com.example.mytestapp.ui.homepage.home.presenter.HomePagePresenter;
 import com.example.mytestapp.ui.homepage.home.view.HomepageViewI;
 import com.example.mytestapp.ui.homepage.home.widget.ScrollingPictureLayout;
@@ -36,7 +36,7 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI, 
     @Override
     protected void initBar() {
         super.initBar();
-        titleLayoutI.setTitle("主页");
+        titleLayoutI.setTitle("热门");
         titleLayoutI.getmImageViewBack().setVisibility(View.GONE);
     }
 
@@ -51,14 +51,14 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI, 
         items = new Items();
         mAdapter = new MultiTypeAdapter();
         mAdapter.setItems(items);
-        mAdapter.register(HomepageResp.StoriesBean.class, new HomepageBinder());
+        mAdapter.register(HomepageResp1.ResultBean.DataBean.class, new HomepageBinder());
         recyclerView.setAdapter(mAdapter);
 
     }
 
     @Override
     protected void loadData(int page) {
-        homePagePresenter.getHomepageDatas();
+        homePagePresenter.getHomepageDatas("top");
     }
 
     @Override
@@ -84,10 +84,12 @@ public class HomepageFragment extends BaseMvpFragment implements HomepageViewI, 
     }
 
     @Override
-    public void getHomepageDatassuccessed(HomepageResp homepageResp) {
-        scrollingPictureLayout.PostDataToUI(homepageResp.getTop_stories());
+    public void getHomepageDatassuccessed(HomepageResp1 homepageResp) {
+
+
+        scrollingPictureLayout.PostDataToUI(homepageResp.getResult().getData().subList(0,5));
         items.clear();
-        items.addAll(homepageResp.getStories());
+        items.addAll(homepageResp.getResult().getData().subList(5,10));
         mAdapter.notifyDataSetChanged();
     }
 }

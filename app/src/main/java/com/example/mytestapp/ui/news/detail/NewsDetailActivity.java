@@ -15,12 +15,12 @@ import com.example.mytestapp.ui.news.detail.view.NewsDetailViewI;
 public class NewsDetailActivity extends BaseMvpActivity implements NewsDetailViewI {
 
     private NewsDetailPresenter newsDetailPresenter;
-    private String id;
+    private String url;
     private WebView webView;
 
-    public static void launch(Context context,int id){
+    public static void launch(Context context,String url){
         Intent intent = new Intent(context,NewsDetailActivity.class);
-        intent.putExtra("id",""+id);
+        intent.putExtra("url",""+url);
         context.startActivity(intent);
     }
 
@@ -32,17 +32,17 @@ public class NewsDetailActivity extends BaseMvpActivity implements NewsDetailVie
 
     @Override
     protected void initView() {
-        id=getIntent().getStringExtra("id");
+        url=getIntent().getStringExtra("url");
         webView=findViewById(R.id.wv);
        // webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://daily.zhihu.com/story/"+id);
+        webView.loadUrl(url);
        // loadData(1);
     }
 
     @Override
     protected void loadData(int page) {
-        newsDetailPresenter.getData(id);
+        //newsDetailPresenter.getData(id);
 
     }
 

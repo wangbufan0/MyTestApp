@@ -5,12 +5,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp1;
 import com.example.mytestapp.ui.news.home.binder.holder.NewsViewHolder;
 import com.example.mytestapp.ui.news.home.domain.NewsResq;
 
 import me.drakeet.multitype.ItemViewBinder;
 
-public class NewsBinder extends ItemViewBinder<NewsResq.StoriesBean, NewsViewHolder> {
+public class NewsBinder extends ItemViewBinder<HomepageResp1.ResultBean.DataBean, NewsViewHolder> {
 
     @NonNull
     @Override
@@ -19,7 +20,7 @@ public class NewsBinder extends ItemViewBinder<NewsResq.StoriesBean, NewsViewHol
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull NewsViewHolder newsViewHolder, @NonNull NewsResq.StoriesBean topStoriesBean) {
+    protected void onBindViewHolder(@NonNull NewsViewHolder newsViewHolder, @NonNull HomepageResp1.ResultBean.DataBean topStoriesBean) {
         newsViewHolder.postDataToUI(topStoriesBean);
     }
 

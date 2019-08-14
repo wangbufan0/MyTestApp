@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/color_hui_2"
-            app:tabSelectedTextColor="@color/color_hei"/>
+            app:tabSelectedTextColor="@color/color_hei"
+            app:tabMode="scrollable"/>
     </RelativeLayout>
     <View
         android:layout_width="wrap_content"

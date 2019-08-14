@@ -4,23 +4,23 @@
     <item
         android:id="@+id/navigation_zhuye"
         android:icon="@drawable/icon_menu_homepage"
-        android:title="主页" />
+        android:title="热门" />
 
     <item
         android:id="@+id/navigation_zixun"
         android:icon="@drawable/icon_zixun"
-        android:title="资讯" />
+        android:title="社会" />
 
     <item
         android:id="@+id/navigation_shequ"
         android:icon="@drawable/icon_shequ"
-        android:title="社区" />
+        android:title="其他" />
 
 
-    <item
-        android:id="@+id/navigation_geren"
-        android:icon="@drawable/icon_geren"
-        android:title="个人" />
+    <!--<item-->
+        <!--android:id="@+id/navigation_geren"-->
+        <!--android:icon="@drawable/icon_geren"-->
+        <!--android:title="个人" />-->
 
 
 </menu>

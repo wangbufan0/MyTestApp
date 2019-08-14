@@ -33,7 +33,7 @@
             android:gravity="left"
             android:ellipsize="end"/>
 
-       <!-- <TextView
+        <TextView
             android:id="@+id/tv_shijian"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,17 +43,17 @@
             android:lines="1"
             android:paddingTop="3dp" />
 
-        <TextView
-            android:id="@+id/tv_jianjie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="简介"
-            android:textColor="@color/color_hui_2"
-            android:textSize="15dp"
-            android:lines="3"
-            android:ellipsize="end"
-            android:paddingTop="3dp"
-            android:paddingBottom="10dp"/>-->
+        <!--   <TextView
+               android:id="@+id/tv_jianjie"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="简介"
+               android:textColor="@color/color_hui_2"
+               android:textSize="15dp"
+               android:lines="3"
+               android:ellipsize="end"
+               android:paddingTop="3dp"
+               android:paddingBottom="10dp"/>-->
 
     </LinearLayout>
 

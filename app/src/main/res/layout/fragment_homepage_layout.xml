@@ -29,7 +29,8 @@
                 android:layout_below="@+id/mll"
                 android:layout_marginTop="10dp"
                 android:background="@color/color_bai"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <Button
                     android:id="@+id/mBt_yiyuan"

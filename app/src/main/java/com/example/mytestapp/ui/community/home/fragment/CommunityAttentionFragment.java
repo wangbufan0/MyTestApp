@@ -5,15 +5,19 @@ import android.view.View;
 import com.example.mytestapp.Base.fragment.BaseListMvpFragment;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
 import com.example.mytestapp.ui.community.home.binder.CommunityAttentionBinder;
-import com.example.mytestapp.ui.community.home.domain.CommunityAttentionResp;
-import com.example.mytestapp.ui.community.home.presenter.CommunityAttentionPresenter;
-import com.example.mytestapp.ui.community.home.view.CommunityAttentionViewI;
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp1;
+import com.example.mytestapp.ui.homepage.home.presenter.HomePagePresenter;
+import com.example.mytestapp.ui.homepage.home.view.HomepageViewI;
 
-import java.util.List;
+public class CommunityAttentionFragment extends BaseListMvpFragment<HomepageResp1.ResultBean.DataBean> implements HomepageViewI {
 
-public class CommunityAttentionFragment extends BaseListMvpFragment<CommunityAttentionResp> implements CommunityAttentionViewI {
+    HomePagePresenter mPresenter;
+    String s;
 
-    CommunityAttentionPresenter mPresenter;
+    public CommunityAttentionFragment(String s){
+        super();
+        this.s=s;
+    }
 
 
     @Override
@@ -25,29 +29,30 @@ public class CommunityAttentionFragment extends BaseListMvpFragment<CommunityAtt
     @Override
     protected void registerMultiType() {
         CommunityAttentionBinder communityAttentionBinder = new CommunityAttentionBinder();
-        mAdapter.register(CommunityAttentionResp.class,communityAttentionBinder);
+        mAdapter.register(HomepageResp1.ResultBean.DataBean.class,communityAttentionBinder);
     }
 
     @Override
     protected void initPresenter() {
 
-        mPresenter= PresenterProviders.of(this,CommunityAttentionPresenter.class);
+        mPresenter= PresenterProviders.of(this,HomePagePresenter.class);
 
     }
 
     @Override
     protected void loadData(int page) {
-        mPresenter.loadData();
+        mPresenter.getHomepageDatas(s);
     }
 
 
-    @Override
-    public void getDataSuccessed(List<CommunityAttentionResp> data) {
-        loadDataSuccessList(data,mCurrentPageNumber,false);
-    }
 
     public void refresh(){
         mRecyclerView.smoothScrollToPosition(0);
         mRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void getHomepageDatassuccessed(HomepageResp1 homepageResp) {
+        loadDataSuccessList(homepageResp.getResult().getData(),mCurrentPageNumber,false);
     }
 }

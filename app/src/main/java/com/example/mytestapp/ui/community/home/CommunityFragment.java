@@ -19,9 +19,9 @@ public class CommunityFragment extends BaseMvpFragment {
 
     private TabLayout mytabl;
     private ViewPager viewPager;
-
-    List<Fragment> fragments=new ArrayList<>();
+    private CommunityAttentionFragment[] fragments=new CommunityAttentionFragment[8];
     List<String> titles=new ArrayList<>();
+    String[] taps={"guonei","guoji","yule","tiyu","junshi","keji","caijing","shishang"};
     @Override
     protected void initPresenter() {
 
@@ -38,9 +38,10 @@ public class CommunityFragment extends BaseMvpFragment {
 
         mytabl= (TabLayout) findViewById(R.id.mTl);
         viewPager= (ViewPager) findViewById(R.id.mVp);
-        fragments.add(new CommunityAttentionFragment());
-        fragments.add(new CommunityAttentionFragment());
-        titles.add("关注");titles.add("热门");
+        titles.add("国内");titles.add("国际");
+        titles.add("娱乐");titles.add("体育");
+        titles.add("军事");titles.add("科技");
+        titles.add("财经");titles.add("时尚");
 
         viewPager.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
@@ -50,12 +51,14 @@ public class CommunityFragment extends BaseMvpFragment {
 
             @Override
             public Fragment getItem(int i) {
-                return fragments.get(i);
+                if(fragments[i]==null)
+                    fragments[i]=new CommunityAttentionFragment(taps[i]);
+                return fragments[i];
             }
 
             @Override
             public int getCount() {
-                return fragments.size();
+                return titles.size();
             }
 
             @Override
@@ -82,14 +85,7 @@ public class CommunityFragment extends BaseMvpFragment {
 
 
     public void refresh(){
-        int i=viewPager.getCurrentItem();
-        if(i==0){
-            CommunityAttentionFragment communityAttentionFragment = (CommunityAttentionFragment) fragments.get(0);
-            communityAttentionFragment.refresh();
-        }else{
-            CommunityAttentionFragment communityAttentionFragment = (CommunityAttentionFragment) fragments.get(1);
-            communityAttentionFragment.refresh();
-        }
+        fragments[viewPager.getCurrentItem()].refresh();
     }
 
 

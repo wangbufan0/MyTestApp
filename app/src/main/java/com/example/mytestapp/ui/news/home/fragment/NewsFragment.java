@@ -2,14 +2,14 @@ package com.example.mytestapp.ui.news.home.fragment;
 
 import com.example.mytestapp.Base.fragment.BaseListMvpFragment;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp1;
+import com.example.mytestapp.ui.homepage.home.presenter.HomePagePresenter;
+import com.example.mytestapp.ui.homepage.home.view.HomepageViewI;
 import com.example.mytestapp.ui.news.home.binder.NewsBinder;
-import com.example.mytestapp.ui.news.home.domain.NewsResq;
-import com.example.mytestapp.ui.news.home.presenter.NewsPresenter;
-import com.example.mytestapp.ui.news.home.view.NewsViewI;
 
-public class NewsFragment extends BaseListMvpFragment<NewsResq.StoriesBean> implements NewsViewI {
+public class NewsFragment extends BaseListMvpFragment<HomepageResp1.ResultBean.DataBean> implements HomepageViewI {
 
-    NewsPresenter mPresenter;
+    HomePagePresenter mPresenter;
 
     @Override
     protected void initView() {
@@ -20,33 +20,31 @@ public class NewsFragment extends BaseListMvpFragment<NewsResq.StoriesBean> impl
     @Override
     protected void initBar() {
         super.initBar();
-        titleLayoutI.setTitle("资讯");
+        titleLayoutI.setTitle("社会");
     }
 
     @Override
     protected void registerMultiType() {
         NewsBinder newsBinder = new NewsBinder();
-        mAdapter.register(NewsResq.StoriesBean.class,newsBinder);
+        mAdapter.register(HomepageResp1.ResultBean.DataBean.class,newsBinder);
     }
 
     @Override
     protected void initPresenter() {
-        mPresenter = PresenterProviders.of(this, NewsPresenter.class);
+        mPresenter = PresenterProviders.of(this, HomePagePresenter.class);
     }
 
     @Override
     protected void loadData(int page) {
-
-        mPresenter.getNesDatas();
-    }
-
-
-    @Override
-    public void getNewsDatasuccessed(NewsResq Datas) {
-        loadDataSuccessList(Datas.getStories(),mCurrentPageNumber,false);
+        mPresenter.getHomepageDatas("shehui");
     }
 
     public void refresh(){
         mRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void getHomepageDatassuccessed(HomepageResp1 homepageResp) {
+        loadDataSuccessList(homepageResp.getResult().getData(),mCurrentPageNumber,false);
     }
 }

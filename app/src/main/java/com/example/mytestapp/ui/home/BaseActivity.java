@@ -19,7 +19,6 @@ import com.example.mytestapp.ui.community.home.CommunityFragment;
 import com.example.mytestapp.ui.homepage.home.fragment.HomepageFragment;
 import com.example.mytestapp.ui.login.LoginActivity;
 import com.example.mytestapp.ui.news.home.fragment.NewsFragment;
-import com.example.mytestapp.ui.personal.PersonalFragment;
 import com.example.mytestapp.utils.GLideUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.yanzhenjie.album.Album;
@@ -78,7 +77,7 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
         fragments.add(new HomepageFragment());
         fragments.add(new NewsFragment());
         fragments.add(new CommunityFragment());
-        fragments.add(new PersonalFragment());
+     //   fragments.add(new PersonalFragment());
 
         ///添加一行注释
 
@@ -150,13 +149,13 @@ public class BaseActivity extends BaseMvpActivity implements BottomNavigationVie
                 }
                 return true;
             }
-            case R.id.navigation_geren: {
-                if (lastfragment != 3) {
-                    switchFragment(lastfragment, 3);
-                    lastfragment = 3;
-                }
-                return true;
-            }
+//            case R.id.navigation_geren: {
+//                if (lastfragment != 3) {
+//                    switchFragment(lastfragment, 3);
+//                    lastfragment = 3;
+//                }
+//                return true;
+//            }
 
         }
         return false;

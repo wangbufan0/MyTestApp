@@ -3,9 +3,10 @@ package com.example.mytestapp.ui.homepage.home.domain;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface HomepageService {
 
-    @GET("news/latest")
-    Observable<HomepageResp> GetHomepageReverse();
+    @GET("/toutiao/index")
+    Observable<HomepageResp1> GetHomepageReverse(@Query("type")String type);
 }

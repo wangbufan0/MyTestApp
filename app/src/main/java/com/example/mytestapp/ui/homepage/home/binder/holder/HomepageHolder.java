@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mytestapp.R;
-import com.example.mytestapp.ui.homepage.home.domain.HomepageResp;
+import com.example.mytestapp.ui.homepage.home.domain.HomepageResp1;
 import com.example.mytestapp.ui.news.detail.NewsDetailActivity;
 import com.example.mytestapp.utils.GLideUtil;
 
@@ -30,17 +30,19 @@ public class HomepageHolder extends RecyclerView.ViewHolder {
             super(itemView);
             textView=itemView.findViewById(R.id.tv_title);
             imageView=itemView.findViewById(R.id.iv1);
+            itemView.findViewById(R.id.tv_shijian).setVisibility(View.GONE);
         }
 
-        public void postDataToUI(final HomepageResp.StoriesBean Data){
+        public void postDataToUI(final HomepageResp1.ResultBean.DataBean Data){
             textView.setText(Data.getTitle());
-            GLideUtil.loadImageViewLoding(itemView.getContext(), Data.getImages().get(0),imageView);
+            GLideUtil.loadImageViewLoding(itemView.getContext(), Data.getThumbnail_pic_s(),imageView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    NewsDetailActivity.launch(itemView.getContext(),Data.getId());
+                    NewsDetailActivity.launch(itemView.getContext(),Data.getUrl());
                 }
             });
+
         }
 
 }

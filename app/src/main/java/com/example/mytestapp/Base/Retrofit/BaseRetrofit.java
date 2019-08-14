@@ -36,13 +36,13 @@ public class BaseRetrofit {
         builder.readTimeout(DEFAULT_TIME, TimeUnit.SECONDS);
         builder.connectTimeout(DEFAULT_TIME, TimeUnit.SECONDS);
         //设置拦截器
-      //  builder.addInterceptor(new BasicParamsInterceptor.Builder().addParamsMap(getCommonMap()).build());
+         builder.addInterceptor(new AppcodeIntercepter());
         builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         OkHttpClient okHttpClient = builder.build();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("http://news-at.zhihu.com/api/4/")
+                .baseUrl("http://toutiao-ali.juheapi.com")
                 .client(okHttpClient)
                 .build();
     }
