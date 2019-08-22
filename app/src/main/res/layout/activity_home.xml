@@ -4,11 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeActivity">
+    tools:context=".ui.home.HomeActivity"
+    android:orientation="vertical">
     <Button
         android:id="@+id/bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1111"/>
+        android:text="新闻"/>
+    <Button
+        android:id="@+id/bt_translation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="翻译"/>
+    <Button
+        android:id="@+id/bt_weibo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="微博"/>
+
 
 </LinearLayout>

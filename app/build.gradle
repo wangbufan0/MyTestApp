@@ -23,6 +23,13 @@ android {
         }
     }
 }
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -74,7 +81,12 @@ dependencies {
     implementation 'com.yanzhenjie:album:2.1.2'
 
     //oss
-    implementation 'com.aliyun.dpa:oss-android-sdk:2.4.5'
+   // implementation 'com.aliyun.dpa:oss-android-sdk:2.4.5'
 
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.5.0'
+
+
+    //微博api
+    implementation 'com.sina.weibo.sdk:core:4.4.1:openDefaultRelease@aar'
 
 }

@@ -6,7 +6,7 @@ import android.content.Context;
 public class MyApplication extends Application {
 
 
-    private static Context context = null;
+    private static Context context ;
 
     public static Context getContext() {
         return context;

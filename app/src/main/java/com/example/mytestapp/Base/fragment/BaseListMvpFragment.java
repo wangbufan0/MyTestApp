@@ -96,9 +96,4 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
         return R.layout.fragment_base_list_layout;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadData(mCurrentPageNumber);
-    }
 }

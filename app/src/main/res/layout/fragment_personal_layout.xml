@@ -27,7 +27,7 @@
             android:paddingLeft="20dp"/>
     </LinearLayout>
 
-    <com.example.mytestapp.ui.personal.widget.PersonalButton
+    <com.example.mytestapp.ui.news.personal.widget.PersonalButton
         android:id="@+id/geren_xiaoxi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         app:show_bottomline="true"
         android:layout_marginTop="10dp"/>
 
-    <com.example.mytestapp.ui.personal.widget.PersonalButton
+    <com.example.mytestapp.ui.news.personal.widget.PersonalButton
         android:id="@+id/geren_shoucang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         app:show_bottomline="false" />
 
 
-    <com.example.mytestapp.ui.personal.widget.PersonalButton
+    <com.example.mytestapp.ui.news.personal.widget.PersonalButton
         android:id="@+id/geren_shezhi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -17,16 +17,17 @@ import java.util.Date;
 public class UploadHelper {
 
     //与个人的存储区域有关
-    private static final String ENDPOINT = "oss-cn-beijing.aliyuncs.com";
+    private static final String ENDPOINT = "<yourEndPoint>";
     //上传仓库名
-    private static final String BUCKET_NAME = "wangbufan0";
+    private static final String BUCKET_NAME = "<yourBucketName>";
+
+    private static final String accessKeyId = "<yourAccessKeyId>";
+    private static final String accessKeySecret = "<yourAccessKeySecret>";
 
     private static OSS getOSSClient() {
         OSSCredentialProvider credentialProvider =
-                new OSSPlainTextAKSKCredentialProvider("LTAIu1QgPcjiPpfU" ,
-                        "fSCJzvogE20n7nx4iuR1v7k5BB8jGW");
-
-        return new OSSClient( MyApplication.getContext(), ENDPOINT, credentialProvider);
+                new OSSPlainTextAKSKCredentialProvider(accessKeyId, accessKeySecret);
+        return new OSSClient(MyApplication.getContext(), ENDPOINT, credentialProvider);
     }
 
     /**
@@ -43,6 +44,7 @@ public class UploadHelper {
                         objectKey, path);
         try {
             //得到client
+
             OSS client = getOSSClient();
             //上传获取结果
             PutObjectResult result = client.putObject(request);

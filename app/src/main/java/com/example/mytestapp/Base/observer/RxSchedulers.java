@@ -1,6 +1,6 @@
 package com.example.mytestapp.Base.observer;
 
-import com.example.mytestapp.Base.Retrofit.BaseRetrofit;
+import com.example.mytestapp.Base.Retrofit.NewsRetrofit;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,8 +16,8 @@ public class RxSchedulers {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> upstream) {
-                return upstream.timeout(BaseRetrofit.getDefaultTime(), TimeUnit.SECONDS)
-                        .retry(BaseRetrofit.getRETRY_TIMES())
+                return upstream.timeout(NewsRetrofit.getDefaultTime(), TimeUnit.SECONDS)
+                        .retry(NewsRetrofit.getRETRY_TIMES())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread());
             }
