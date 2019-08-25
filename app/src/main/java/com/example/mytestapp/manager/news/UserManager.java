@@ -1,4 +1,4 @@
-package com.example.mytestapp.manager.user;
+package com.example.mytestapp.manager.news;
 
 import android.text.TextUtils;
 

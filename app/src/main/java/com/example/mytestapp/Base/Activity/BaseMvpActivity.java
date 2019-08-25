@@ -51,7 +51,8 @@ public abstract class BaseMvpActivity extends AppCompatActivity implements BaseV
     }
 
 
-    protected View inflate(@LayoutRes int resource) {
+
+   protected View inflate(@LayoutRes int resource) {
         if (resource == 0) return null;
         return getLayoutInflater().inflate(resource, null);
     }

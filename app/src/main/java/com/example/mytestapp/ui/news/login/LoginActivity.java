@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
 import com.example.mytestapp.R;
-import com.example.mytestapp.manager.user.UserManager;
+import com.example.mytestapp.manager.news.UserManager;
 import com.example.mytestapp.ui.news.NewsActivity;
 import com.example.mytestapp.ui.news.login.presenter.LoginPresenter;
 import com.example.mytestapp.ui.news.login.view.LoginViewI;

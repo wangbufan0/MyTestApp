@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import com.example.mytestapp.Base.fragment.BaseMvpFragment;
 import com.example.mytestapp.Base.widget.MyBottomSheetDialog;
 import com.example.mytestapp.R;
-import com.example.mytestapp.manager.user.UserManager;
+import com.example.mytestapp.manager.news.UserManager;
 import com.example.mytestapp.ui.news.community.BigImage.BigImageActivity;
 import com.example.mytestapp.upload.UploadHelper;
 import com.example.mytestapp.utils.GLideUtil;
