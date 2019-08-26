@@ -64,7 +64,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-32'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-32'
     //工具类
-    implementation 'com.blankj:utilcode:1.23.7'
+    implementation 'com.blankj:utilcode:1.25.8'
     //界面显示框架（无数据，无网络等）
     implementation 'com.github.Bakumon:StatusLayoutManager:1.0.1'
 
@@ -81,8 +81,6 @@ dependencies {
     implementation 'com.yanzhenjie:album:2.1.2'
 
     //oss
-   // implementation 'com.aliyun.dpa:oss-android-sdk:2.4.5'
-
     implementation 'com.aliyun.dpa:oss-android-sdk:2.5.0'
 
 

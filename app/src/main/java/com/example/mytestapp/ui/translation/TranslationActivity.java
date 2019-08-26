@@ -13,19 +13,31 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.blankj.utilcode.util.StringUtils;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
+import com.example.mytestapp.Base.decoration.BaseItemDecoration;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
 import com.example.mytestapp.R;
+import com.example.mytestapp.manager.translation.HistoryManager;
 import com.example.mytestapp.manager.translation.StatusManager;
+import com.example.mytestapp.ui.translation.binder.TranslationBinder;
+import com.example.mytestapp.ui.translation.domain.HistoryData;
 import com.example.mytestapp.ui.translation.domain.TranslationResp;
 import com.example.mytestapp.ui.translation.presenter.TranslationPresenter;
 import com.example.mytestapp.ui.translation.view.TranslationViewI;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
  * @Name: TranslationActivity
  * @Author: wangbufan
  * @Date: 2019/8/21 22:08
- * @Description:
+ * @Description: 翻译主界面
  */
 public class TranslationActivity extends BaseMvpActivity implements TranslationViewI {
 
@@ -37,13 +49,33 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
     private static final int CHINESE_TO_ENGLISH =0;
     private static final int ENGLISH_TO_CHINESE =1;
 
-
     private EditText editText;
     private TextView textView, tv1, tv2;
     private ImageView imageView;
+    private RecyclerView recyclerView;
+
+
     private TranslationPresenter presenter;
-    private String q;
+    private String q;//输入
     private int statas=0;
+    private HistoryManager mgr;
+    private MultiTypeAdapter adapter;
+
+    private List<HistoryData> datas;
+
+
+    @Override
+    protected void initBar() {
+        super.initBar();
+        titleLayoutI.getmImageViewBack().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!StringUtils.isEmpty(q)){
+                    chang2NULLUI();
+                }else finish();
+            }
+        });
+    }
 
     @Override
     protected void initPresenter() {
@@ -56,8 +88,16 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
     protected void initView() {
         editText = findViewById(R.id.et_input);
         textView = findViewById(R.id.tv_output);
+        textView.setVisibility(View.GONE);
         tv1 = findViewById(R.id.tv_chinese);
         tv2 = findViewById(R.id.tv_english);
+        if(statas== ENGLISH_TO_CHINESE){
+            tv1.setText("English");
+            tv2.setText("Chinese");
+        }else {
+            tv1.setText("Chinese");
+            tv2.setText("English");
+        }
         imageView = findViewById(R.id.iv_change);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,14 +105,32 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
                 Switch();
             }
         });
+        recyclerView=findViewById(R.id.recyclerview);
+        recyclerView.addItemDecoration(new BaseItemDecoration());
+        adapter=new MultiTypeAdapter();
+        recyclerView.setAdapter(adapter);
+        adapter.register(HistoryData.class,new TranslationBinder());
         initEditText();
-        if(statas== ENGLISH_TO_CHINESE){
-            tv1.setText("English");
-            tv2.setText("Chinese");
-        }else{
-            tv1.setText("Chinese");
-            tv2.setText("English");
-        }
+        initSqlite();
+        adapter.setItems(datas);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!StringUtils.isEmpty(q)){
+            chang2NULLUI();
+        }else super.onBackPressed();
+    }
+
+    public void initSqlite(){
+        mgr=new HistoryManager(this);
+        startManagingCursor(mgr.queryTheCursor());
+        datas=mgr.query();
+        if(datas==null)datas=new ArrayList<HistoryData>();
+    }
+
+    public TranslationActivity() {
     }
 
     @Override
@@ -145,19 +203,21 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
                 return false;
             }
         });
-
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
                     //按下事件
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
 // 如果软键盘已经显示，则隐藏，反之则显示
                     imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                     editText.setCursorVisible(false);
                     q = String.valueOf(editText.getText());
-                    loadData(1);
+                    if(StringUtils.isEmpty(q)){
+                        chang2NULLUI();
+                    }else{
+                        loadData(1);
+                    }
                     return true;
                 }
                 return false;
@@ -165,6 +225,15 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
             }
         });
     }
+
+    public void chang2NULLUI(){
+        textView.setText("");
+        editText.setText("");
+        textView.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        adapter.notifyDataSetChanged();
+    }
+
 
     @Override
     protected void loadData(int page) {
@@ -186,13 +255,27 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
 
     @Override
     public void getDataSuccess(TranslationResp resp) {
-        textView.setText(resp.getTrans_result().get(0).getDst());
+        HistoryData data = new HistoryData(resp.getTrans_result().get(0).getSrc(),resp.getTrans_result().get(0).getDst());
+        change2NotNULLUI(data);
+    }
+
+    public void change2NotNULLUI(HistoryData data){
+        int index=datas.indexOf(data);
+        if(index!=-1) datas.remove(index);
+        datas.add(0,data);
+        mgr.add(data);
+        textView.setVisibility(View.VISIBLE);
+        q=data.getFrom();
+        editText.setText(data.getFrom());
+        textView.setText(data.getTo());
+        recyclerView.setVisibility(View.GONE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         StatusManager.getInstance().setStatus(statas);
+        mgr.closeDB();
     }
 
 }
