@@ -1,7 +1,7 @@
 package com.example.mytestapp.ui.news.news.detail.presenter;
 
 
-import com.example.mytestapp.Base.Retrofit.NewsRetrofit;
+import com.example.mytestapp.Base.Retrofit.news.NewsRetrofit;
 import com.example.mytestapp.Base.observer.MyObserver;
 import com.example.mytestapp.Base.presenter.BasePresenter;
 import com.example.mytestapp.ui.news.news.detail.domain.NewDetailresq;

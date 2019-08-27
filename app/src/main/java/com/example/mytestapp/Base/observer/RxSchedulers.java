@@ -1,6 +1,6 @@
 package com.example.mytestapp.Base.observer;
 
-import com.example.mytestapp.Base.Retrofit.NewsRetrofit;
+import com.example.mytestapp.Base.Retrofit.news.NewsRetrofit;
 
 import java.util.concurrent.TimeUnit;
 

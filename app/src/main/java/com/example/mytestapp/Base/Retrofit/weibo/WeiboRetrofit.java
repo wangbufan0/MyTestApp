@@ -1,22 +1,23 @@
-package com.example.mytestapp.Base.Retrofit;
+package com.example.mytestapp.Base.Retrofit.weibo;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @Name: TranslationRetrofit
+ * @Name: WeiboRetrofit
  * @Author: wangbufan
- * @Date: 2019/8/21 22:44
+ * @Date: 2019/8/27 10:44
  * @Description:
  */
-public class TranslationRetrofit {
+public class WeiboRetrofit {
 
-    private static TranslationRetrofit mRest;
+    private static WeiboRetrofit mRest;
     private Retrofit retrofit;
     private static final int DEFAULT_TIME = 10;    //默认超时时间
     private static final long RETRY_TIMES = 1;   //重订阅次数
@@ -26,9 +27,9 @@ public class TranslationRetrofit {
     }
 
 
-    public static TranslationRetrofit getInstance() {
+    public static WeiboRetrofit getInstance() {
         if (mRest == null) {
-            mRest = new TranslationRetrofit();
+            mRest = new WeiboRetrofit();
         }
         return mRest;
     }
@@ -37,28 +38,24 @@ public class TranslationRetrofit {
         return RETRY_TIMES;
     }
 
-    private TranslationRetrofit() {
+    private WeiboRetrofit() {
 
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
         builder.readTimeout(DEFAULT_TIME, TimeUnit.SECONDS);
         builder.connectTimeout(DEFAULT_TIME, TimeUnit.SECONDS);
         //设置拦截器
-       // builder.addInterceptor(new AppcodeIntercepter());
-       // builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+        builder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         OkHttpClient okHttpClient = builder.build();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://api.fanyi.baidu.com/")
+                .baseUrl("https://api.weibo.com/2/")
                 .client(okHttpClient)
                 .build();
     }
     public <T> T create(Class<T> service) {
         return this.retrofit.create(service);
     }
-
-
-
 
 
 }

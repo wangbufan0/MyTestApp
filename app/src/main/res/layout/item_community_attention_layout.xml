@@ -11,7 +11,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="centerCrop"
-        android:visibility="gone"/>
+        />
 
     <LinearLayout
         android:id="@+id/mll"
@@ -26,8 +26,7 @@
             android:layout_height="wrap_content"
             android:text="wangbufan"
             android:textColor="@color/color_lan"
-            android:padding="4dp"
-            android:visibility="gone"/>
+            android:padding="4dp" />
         <TextView
             android:id="@+id/mTv_neirong"
             android:maxLines="5"
@@ -42,9 +41,9 @@
             android:id="@+id/mNiv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imgGap="4dp"
+            app:imgGap="1dp"
             app:maxSize="9"
-            app:showStyle="fill"
-            app:singleImgSize="700dp" />
+            app:showStyle="grid"
+            app:singleImgSize="200dp" />
     </LinearLayout>
 </LinearLayout>
