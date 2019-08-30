@@ -41,7 +41,6 @@ public class WeiboHomepageViewHolder extends RecyclerView.ViewHolder {
         touxiang = itemView.findViewById(R.id.mIv_touxiang);
         nineGridImageView = itemView.findViewById(R.id.mNiv);
 
-
     }
 
     public void postDataToUI(final WeiboHomepageResp.StatusesBean data){
@@ -51,34 +50,50 @@ public class WeiboHomepageViewHolder extends RecyclerView.ViewHolder {
 //
            GLideUtil.loadImageViewRound(itemView.getContext(),data.getUser().getAvatar_large(),touxiang);
 
-        //图片适配器
-        NineGridImageViewAdapter<String> mAdapter = new NineGridImageViewAdapter<String>() {
-            @Override//设置显示图片的方法
-            protected void onDisplayImage(Context context, ImageView imageView, String s) {
-
-                GLideUtil.loadImageViewLoding(context,s,imageView);
-            }
-
-            @Override//自定义imageview
-            protected ImageView generateImageView(Context context) {
-                return super.generateImageView(context);
-            }
-
-            @Override//图片点击事件
-            protected void onItemImageClick(Context context, int index, List<String> list) {
-                BigImageActivity.launch(context,index,list);
-            }
-        };
         nineGridImageView.setAdapter(mAdapter);
+        nineGridImageView.setImagesData(getMiddleImageURL(data.getPic_urls()));
+    }
 
-        List<String> url = new ArrayList<>();
-        if(!data.getPic_urls().isEmpty()){
-            for(int i =0;i<data.getPic_urls().size();i++) {
-                url.add(StringUtil.replace(data.getPic_urls().get(i).getThumbnail_pic(),"thumbnail","bmiddle"));
-            }
-
+    //图片适配器
+    private static NineGridImageViewAdapter<String> mAdapter = new NineGridImageViewAdapter<String>() {
+        @Override//设置显示图片的方法
+        protected void onDisplayImage(Context context, ImageView imageView, String s) {
+            GLideUtil.loadImageViewLoding(context,s,imageView);
         }
-        nineGridImageView.setImagesData(url);
+        @Override//图片点击事件
+        protected void onItemImageClick(Context context, int index, List<String> list) {
+            BigImageActivity.launch(context,index,getLargeImageURL(list));
+        }
+    };
+
+    private static List<String> getMiddleImageURL(List<WeiboHomepageResp.StatusesBean.PicUrlsBean> urls){
+        //thumbnail 低 bmiddle 中 large 高
+        String low = "thumbnail";
+        String middle = "bmiddle";
+        String large = "large";
+        List<String> datas= new ArrayList<>();
+
+        if(urls.isEmpty()) return datas;
+
+        for(int i = 0;i<urls.size();i++){
+
+            datas.add(StringUtil.replace(urls.get(i).getThumbnail_pic(),low,middle));
+        }
+        return datas;
+    }
+
+    private static List<String> getLargeImageURL(List<String> urls){
+        //thumbnail 低 bmiddle 中 large 高
+        String low = "thumbnail";
+        String middle = "bmiddle";
+        String large = "large";
+        List<String> datas= new ArrayList<>();
+        if(urls.isEmpty()) return datas;
+        for(int i = 0;i<urls.size();i++){
+            datas.add(StringUtil.replace(urls.get(i),middle,large));
+            datas.get(0);
+        }
+        return datas;
     }
 
 }

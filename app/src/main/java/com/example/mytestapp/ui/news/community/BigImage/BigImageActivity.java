@@ -14,12 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
 import com.example.mytestapp.Base.widget.MyBottomSheetDialog;
 import com.example.mytestapp.R;
 import com.example.mytestapp.load.image.LoadImage;
+import com.example.mytestapp.utils.GLideUtil;
 import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
@@ -98,10 +97,7 @@ public class BigImageActivity extends BaseMvpActivity {
                 else
                     tvIndex.setText((position + 1) + "/" + paths.size());
 
-                Glide.with(BigImageActivity.this)
-                        .load(paths.get(position))
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存模式
-                        .into(icon);
+                GLideUtil.loadImageViewLoding(container.getContext(),paths.get(position),icon);
                 icon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -112,6 +108,7 @@ public class BigImageActivity extends BaseMvpActivity {
                 icon.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
+                        //下载图片
                         final MyBottomSheetDialog dialog= new MyBottomSheetDialog(icon.getContext(),"保存图片");
                         dialog.getViews().get(0).setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -124,7 +121,6 @@ public class BigImageActivity extends BaseMvpActivity {
                         return true;
                     }
                 });
-
                 container.addView(view);
                 return view;
             }
