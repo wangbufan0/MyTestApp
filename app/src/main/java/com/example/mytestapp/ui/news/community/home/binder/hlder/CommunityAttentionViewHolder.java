@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mytestapp.R;
 import com.example.mytestapp.ui.news.community.BigImage.BigImageActivity;
 import com.example.mytestapp.ui.news.home.domain.HomepageResp1;
-import com.example.mytestapp.ui.news.news.detail.NewsDetailActivity;
+import com.example.mytestapp.ui.home.webview.WebViewActivity;
 import com.example.mytestapp.utils.GLideUtil;
 import com.jaeger.ninegridimageview.NineGridImageView;
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter;
@@ -79,7 +79,7 @@ public class CommunityAttentionViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NewsDetailActivity.launch(itemView.getContext(),data.getUrl());
+                WebViewActivity.launch(itemView.getContext(),data.getUrl());
             }
         });
 

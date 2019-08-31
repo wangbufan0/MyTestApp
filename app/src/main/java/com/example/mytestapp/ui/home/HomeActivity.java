@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mytestapp.R;
 import com.example.mytestapp.ui.news.NewsActivity;
 import com.example.mytestapp.ui.translation.TranslationActivity;
-import com.example.mytestapp.ui.weibo.WeiboActivity;
+import com.example.mytestapp.ui.weibo.home.WeiboActivity;
 
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{

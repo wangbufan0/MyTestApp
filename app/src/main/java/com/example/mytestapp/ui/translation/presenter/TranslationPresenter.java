@@ -1,6 +1,6 @@
 package com.example.mytestapp.ui.translation.presenter;
 
-import com.example.mytestapp.Base.Retrofit.translation.TranslationRetrofit;
+import com.example.mytestapp.Retrofit.translation.TranslationRetrofit;
 import com.example.mytestapp.Base.observer.MyObserver;
 import com.example.mytestapp.Base.observer.RxSchedulers;
 import com.example.mytestapp.Base.presenter.BasePresenter;

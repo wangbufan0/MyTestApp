@@ -17,7 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.mytestapp.R;
 import com.example.mytestapp.ui.news.home.domain.HomepageResp1;
-import com.example.mytestapp.ui.news.news.detail.NewsDetailActivity;
+import com.example.mytestapp.ui.home.webview.WebViewActivity;
 import com.example.mytestapp.utils.GLideUtil;
 
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ public class ScrollingPictureLayout extends LinearLayout {
     private class pagerImageClick implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            NewsDetailActivity.launch(context,url.get(lastPosition));
+            WebViewActivity.launch(context,url.get(lastPosition));
         }
     }
 

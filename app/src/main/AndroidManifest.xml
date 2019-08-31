@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.weibo.WeiboActivity"></activity>
+        <activity android:name=".ui.weibo.home.WeiboActivity"></activity>
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="Home"
@@ -46,7 +46,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".ui.news.news.detail.NewsDetailActivity"
+            android:name=".ui.home.webview.WebViewActivity"
             android:label=" "
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
@@ -58,6 +58,12 @@
         <activity
             android:name=".ui.translation.TranslationActivity"
             android:label="翻译"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".ui.weibo.details.WeiboDetailsActivity"
+            android:label="微博正文"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>

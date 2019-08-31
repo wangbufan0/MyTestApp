@@ -1,4 +1,4 @@
-package com.example.mytestapp.ui.weibo.key;
+package com.example.mytestapp.ui.weibo.home.key;
 
 /**
  * @Name: Constants

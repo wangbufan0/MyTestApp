@@ -26,16 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="wangbufan"
-            android:textColor="@color/color_lan"
+            android:textColor="@color/color_hei"
             android:padding="4dp" />
         <TextView
             android:id="@+id/mTv_neirong"
             android:maxLines="5"
             android:text="这是一个测试"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:autoLink="all"/>
+
 
         <com.jaeger.ninegridimageview.NineGridImageView
             android:id="@+id/mNiv"
@@ -45,6 +47,36 @@
             app:maxSize="9"
             app:showStyle="fill"
             app:singleImgSize="200dp" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+            <TextView
+                android:id="@+id/tv_repost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="转发"/>
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评论"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+
+            <TextView
+                android:id="@+id/tv_attitudes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点赞"
+                android:paddingRight="10dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

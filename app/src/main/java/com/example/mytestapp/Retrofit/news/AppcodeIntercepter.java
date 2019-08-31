@@ -1,4 +1,4 @@
-package com.example.mytestapp.Base.Retrofit.news;
+package com.example.mytestapp.Retrofit.news;
 
 import java.io.IOException;
 

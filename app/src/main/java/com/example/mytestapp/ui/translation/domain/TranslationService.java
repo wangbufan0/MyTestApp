@@ -4,7 +4,7 @@ package com.example.mytestapp.ui.translation.domain;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 
 /**
@@ -14,6 +14,6 @@ import retrofit2.http.QueryMap;
  * @Description:
  */
 public interface TranslationService {
-    @POST("api/trans/vip/translate")
+    @GET("api/trans/vip/translate")
     Observable<TranslationResp> getTranslationData(@QueryMap Map<String,String> params);
 }

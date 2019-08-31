@@ -1,4 +1,4 @@
-package com.example.mytestapp.ui.weibo.domain;
+package com.example.mytestapp.ui.weibo.home.domain;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.mytestapp.manager.weibo.WeiboManager;

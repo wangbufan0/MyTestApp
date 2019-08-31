@@ -1,4 +1,4 @@
-package com.example.mytestapp.ui.weibo;
+package com.example.mytestapp.ui.weibo.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mytestapp.R;
 import com.example.mytestapp.manager.weibo.WeiboManager;
-import com.example.mytestapp.ui.weibo.domain.SelfWbAuthListener;
+import com.example.mytestapp.ui.weibo.home.domain.SelfWbAuthListener;
 import com.example.mytestapp.ui.weibo.homepage.WeiboHomepageFragment;
-import com.example.mytestapp.ui.weibo.key.Constants;
+import com.example.mytestapp.ui.weibo.home.key.Constants;
 import com.sina.weibo.sdk.WbSdk;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;

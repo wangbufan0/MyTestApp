@@ -1,6 +1,6 @@
 package com.example.mytestapp.ui.news.home.presenter;
 
-import com.example.mytestapp.Base.Retrofit.news.NewsRetrofit;
+import com.example.mytestapp.Retrofit.news.NewsRetrofit;
 import com.example.mytestapp.Base.observer.MyObserver;
 import com.example.mytestapp.Base.observer.RxSchedulers;
 import com.example.mytestapp.Base.presenter.BasePresenter;

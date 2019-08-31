@@ -72,6 +72,7 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
             public void onClick(View v) {
                 if(!StringUtils.isEmpty(q)){
                     chang2NULLUI();
+                    q=null;
                 }else finish();
             }
         });
@@ -120,6 +121,7 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
     public void onBackPressed() {
         if(!StringUtils.isEmpty(q)){
             chang2NULLUI();
+            q=null;
         }else super.onBackPressed();
     }
 

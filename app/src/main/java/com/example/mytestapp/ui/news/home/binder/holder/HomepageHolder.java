@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mytestapp.R;
 import com.example.mytestapp.ui.news.home.domain.HomepageResp1;
-import com.example.mytestapp.ui.news.news.detail.NewsDetailActivity;
+import com.example.mytestapp.ui.home.webview.WebViewActivity;
 import com.example.mytestapp.utils.GLideUtil;
 
 public class HomepageHolder extends RecyclerView.ViewHolder {
@@ -39,7 +39,7 @@ public class HomepageHolder extends RecyclerView.ViewHolder {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    NewsDetailActivity.launch(itemView.getContext(),Data.getUrl());
+                    WebViewActivity.launch(itemView.getContext(),Data.getUrl());
                 }
             });
 

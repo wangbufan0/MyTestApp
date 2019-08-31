@@ -2,6 +2,7 @@ package com.example.mytestapp.ui.weibo.homepage.domin;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -97,7 +98,7 @@ public class WeiboHomepageResp {
         this.statuses = statuses;
     }
 
-    public static class StatusesBean {
+    public static class StatusesBean implements Serializable {
         /**
          * created_at : Tue Aug 27 00:00:30 +0800 2019
          * id : 4409688923582511
@@ -672,7 +673,7 @@ public class WeiboHomepageResp {
             this.text_tag_tips = text_tag_tips;
         }
 
-        public static class UserBean {
+        public static class UserBean implements Serializable {
             /**
              * id : 6534724308
              * idstr : 6534724308
@@ -1368,7 +1369,7 @@ public class WeiboHomepageResp {
                 this.tab_manage = tab_manage;
             }
 
-            public static class InsecurityBean {
+            public static class InsecurityBean implements Serializable {
                 /**
                  * sexual_content : false
                  */
@@ -1385,7 +1386,7 @@ public class WeiboHomepageResp {
             }
         }
 
-        public static class VisibleBean {
+        public static class VisibleBean implements Serializable {
             /**
              * type : 0
              * list_id : 0
@@ -1411,7 +1412,7 @@ public class WeiboHomepageResp {
             }
         }
 
-        public static class NumberDisplayStrategyBean {
+        public static class NumberDisplayStrategyBean implements Serializable {
             /**
              * apply_scenario_flag : 3
              * display_text_min_number : 1000000
@@ -1447,7 +1448,7 @@ public class WeiboHomepageResp {
             }
         }
 
-        public static class CommentManageInfoBean {
+        public static class CommentManageInfoBean implements Serializable {
             /**
              * comment_permission_type : -1
              * approval_comment_type : 0
@@ -1473,7 +1474,7 @@ public class WeiboHomepageResp {
             }
         }
 
-        public static class PicUrlsBean {
+        public static class PicUrlsBean implements Serializable {
             /**
              * thumbnail_pic : http://wx4.sinaimg.cn/thumbnail/0078f2jaly1g6divxtxjnj30ge0lu408.jpg
              */
@@ -1489,7 +1490,7 @@ public class WeiboHomepageResp {
             }
         }
 
-        public static class AnnotationsBean {
+        public static class AnnotationsBean implements Serializable {
             /**
              * client_mblogid : iPhone-2465AB50-7705-47A1-939E-29673F8889DE
              * mapi_request : true

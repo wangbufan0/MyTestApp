@@ -12,7 +12,8 @@ import retrofit2.http.QueryMap;
  * @Date: 2019/8/27 10:46
  * @Description:
  */
-public interface WeiboHomepageService {
+public interface  WeiboHomepageService {
+
     @GET("statuses/home_timeline.json")
     Observable<WeiboHomepageResp> getWeiboHomeTimeline(@QueryMap Map<String ,String> parms);
 }
