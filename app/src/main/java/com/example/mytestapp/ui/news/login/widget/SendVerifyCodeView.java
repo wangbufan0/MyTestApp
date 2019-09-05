@@ -16,7 +16,8 @@ import java.util.concurrent.TimeUnit;
  * MISSION
  */
 public class SendVerifyCodeView extends AppCompatTextView {
-    private static final long COUNT_DOWN_COUNT_MILLI = TimeUnit.SECONDS.toMillis(30);
+
+  private static final long COUNT_DOWN_COUNT_MILLI = TimeUnit.SECONDS.toMillis(30);
     private CountDownTimer countDownTimer;
 
     public SendVerifyCodeView(Context context) {

@@ -129,6 +129,9 @@ public class LoginActivity extends BaseMvpActivity implements View.OnClickListen
     @Override
     public void loginSuccess() {
         //这里会保存用户相关的信息
+
+
+
         UserManager.getInstance().savePhoneNumber(mInputPhoneNumView.getText().toString());
         UserManager.getInstance().saveToken("999999");
         NewsActivity.launch(this);

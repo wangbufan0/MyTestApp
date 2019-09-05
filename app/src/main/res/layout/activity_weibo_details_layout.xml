@@ -14,12 +14,12 @@
 
             <ImageView
                 android:id="@+id/iv_avatar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="10dp"
                 />
 
             <TextView
@@ -27,40 +27,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="wangbufan"
-                android:textSize="18dp"
+                android:textSize="13sp"
                 android:textColor="@color/color_hei"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="8dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/iv_avatar"/>
+                app:layout_constraintLeft_toRightOf="@+id/iv_avatar"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:text="昨天 8：00"
+                android:textSize="10sp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
                 app:layout_constraintLeft_toRightOf="@+id/iv_avatar"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="3dp"/>
 
             <TextView
                 android:id="@+id/tv_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_hei"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:text="afadfvsadvdsdv"
                 app:layout_constraintLeft_toLeftOf="@+id/tv_name"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_time"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
                 android:autoLink="web"/>
 
             <com.jaeger.ninegridimageview.NineGridImageView
                 android:id="@+id/nine_image_view"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 app:imgGap="1dp"
                 app:maxSize="9"
                 app:showStyle="fill"
@@ -68,8 +71,36 @@
                 app:layout_constraintLeft_toLeftOf="@+id/tv_name"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_text"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+
+                android:layout_marginRight="10dp"/>
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_bai"
+                app:layout_constraintTop_toBottomOf="@+id/nine_image_view">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabTextColor="@color/color_hui_2"
+                    app:tabSelectedTextColor="@color/color_hei"/>
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

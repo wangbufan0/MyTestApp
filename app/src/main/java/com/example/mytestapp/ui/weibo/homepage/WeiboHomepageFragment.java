@@ -2,11 +2,14 @@ package com.example.mytestapp.ui.weibo.homepage;
 
 import com.example.mytestapp.Base.fragment.BaseListMvpFragment;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
+import com.example.mytestapp.manager.weibo.homepage.WeiboHomepageHistroyManager;
 import com.example.mytestapp.ui.weibo.homepage.binder.WeiboHomepageBinder;
 import com.example.mytestapp.ui.weibo.homepage.domin.WeiboHomepageResp;
+import com.example.mytestapp.ui.weibo.homepage.domin.WeiboHomepageResp.StatusesBean;
 import com.example.mytestapp.ui.weibo.homepage.presenter.WeiboHomePagePresenter;
 import com.example.mytestapp.ui.weibo.homepage.view.WeiboHomepageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,11 +18,11 @@ import java.util.List;
  * @Date: 2019/8/27 21:41
  * @Description:
  */
-public class WeiboHomepageFragment extends BaseListMvpFragment<WeiboHomepageResp.StatusesBean> implements WeiboHomepageView {
+public class WeiboHomepageFragment extends BaseListMvpFragment<StatusesBean> implements WeiboHomepageView {
     private WeiboHomePagePresenter presenter;
     @Override
     protected void registerMultiType() {
-        mAdapter.register(WeiboHomepageResp.StatusesBean.class,new WeiboHomepageBinder());
+        mAdapter.register(StatusesBean.class,new WeiboHomepageBinder());
     }
 
     @Override
@@ -29,21 +32,28 @@ public class WeiboHomepageFragment extends BaseListMvpFragment<WeiboHomepageResp
     }
 
     @Override
+    protected void initView() {
+        super.initView();
+        loadDataSuccessList(WeiboHomepageHistroyManager.getDatas()
+                            ,mCurrentPageNumber,true);
+        mRefreshLayout.autoRefresh();
+    }
+
+    @Override
     protected void initPresenter() {
         presenter= PresenterProviders.of(this, WeiboHomePagePresenter.class);
-        loadData(1);
     }
 
     @Override
     protected void loadData(int page) {
-        WeiboHomepageResp.StatusesBean data = null;
+        StatusesBean data = null;
         if(page==1){
             if(!items.isEmpty())
-                data= (WeiboHomepageResp.StatusesBean) items.get(0);
+                data= (StatusesBean) items.get(0);
             presenter.getData(data==null?0:data.getId(),0);
         }else{
             if(!items.isEmpty())
-                data= (WeiboHomepageResp.StatusesBean) items.get(items.size()-1);
+                data= (StatusesBean) items.get(items.size()-1);
             presenter.getData(0,data==null?0:data.getId());
         }
 
@@ -58,7 +68,7 @@ public class WeiboHomepageFragment extends BaseListMvpFragment<WeiboHomepageResp
     }
 
     @Override
-    public void loadDataSuccessList(List<WeiboHomepageResp.StatusesBean> newListData, int currentPage, boolean hasNext) {
+    public void loadDataSuccessList(List<StatusesBean> newListData, int currentPage, boolean hasNext) {
         refreshComplete();
         mRefreshLayout.setEnableLoadMore(hasNext);
         if (newListData.isEmpty()){
@@ -81,5 +91,15 @@ public class WeiboHomepageFragment extends BaseListMvpFragment<WeiboHomepageResp
             statusLayoutManager.showSuccessLayout();
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        List<StatusesBean> list=new ArrayList<>();
+        for(int i=0;i<20;i++){
+            list.add((StatusesBean) items.get(i));
+        }
+        WeiboHomepageHistroyManager.setdatas(list);
     }
 }

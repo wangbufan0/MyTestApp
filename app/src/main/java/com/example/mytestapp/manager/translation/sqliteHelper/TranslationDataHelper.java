@@ -22,15 +22,23 @@ public class TranslationDataHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, version);
     }
 
+    /**
+     * 在创建数据库时调用
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         String tab_history="create table IF NOT EXISTS history(_id integer primary key autoincrement,_from text,_to text)";
         //执行SQL语句
         db.execSQL(tab_history);
     }
-
+    /**
+     * 在升级数据库时调用
+     * @param db
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("ALTER TABLE person ADD COLUMN other STRING");
+        String upData="ALTER TABLE history ADD COLUMN other text";
+        db.execSQL(upData);
     }
 }

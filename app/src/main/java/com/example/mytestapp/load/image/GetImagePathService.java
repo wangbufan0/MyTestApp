@@ -1,6 +1,7 @@
 package com.example.mytestapp.load.image;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.bumptech.glide.Glide;
 
@@ -17,7 +18,8 @@ public class GetImagePathService implements Runnable {
 
     private String url;
     private Context context;
-    private GetImagePathCallBack callBack;
+    private GetImagePathCallBack callBack;Bitmap  bitmap;
+
 
 
     public GetImagePathService(Context context, String url, GetImagePathCallBack callBack) {
@@ -30,6 +32,14 @@ public class GetImagePathService implements Runnable {
     public void run() {
         File file = null;
         try {
+
+            bitmap= Glide.with(context)
+                    .asBitmap()
+                    .load(url)
+                    .submit()
+                    .get();
+
+
            file= Glide.with(context)
                     .asFile()
                     .load(url)
@@ -43,6 +53,7 @@ public class GetImagePathService implements Runnable {
         } finally {
             if (file == null) callBack.Failed();
             else callBack.Successed(file);
+            if(bitmap!=null) callBack.BitMapSuccessed(bitmap);
         }
     }
 }

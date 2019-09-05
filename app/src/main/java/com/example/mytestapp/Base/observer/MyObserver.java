@@ -20,11 +20,11 @@ public abstract class MyObserver<T> implements Observer<T> {
         this.mBasePresenter = pBasePresenter;
     }
 
+
     public MyObserver(BasePresenter pBasePresenter, boolean isShowLoading) {
         this.mBasePresenter = pBasePresenter;
         this.isShowLoading = isShowLoading;
     }
-
 
     @Override
     public void onError(Throwable throwable) {

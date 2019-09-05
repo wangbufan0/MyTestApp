@@ -26,7 +26,8 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
     protected void initView() {
         initRecyclerView();
         mAdapter=new MultiTypeAdapter();
-        items=new Items();
+        if(items==null)
+            items=new Items();
         mAdapter.setItems(items);
         registerMultiType();
         mRecyclerView.setAdapter(mAdapter);
@@ -51,7 +52,7 @@ public abstract class BaseListMvpFragment<T> extends BaseMvpFragment {
             }
 
         });
-        statusLayoutManager.showLoadingLayout();
+       // statusLayoutManager.showLoadingLayout();
     }
 
     protected abstract void registerMultiType();

@@ -127,7 +127,6 @@ public class TranslationActivity extends BaseMvpActivity implements TranslationV
 
     public void initSqlite(){
         mgr=new HistoryManager(this);
-        startManagingCursor(mgr.queryTheCursor());
         datas=mgr.query();
         if(datas==null)datas=new ArrayList<HistoryData>();
     }

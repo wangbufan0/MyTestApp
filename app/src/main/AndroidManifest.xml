@@ -66,6 +66,11 @@
             android:label="微博正文"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".ui.lottery.LotteryActivity"
+            android:label="抽奖"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>
