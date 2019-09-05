@@ -1,5 +1,7 @@
 package com.example.mytestapp.ui.weibo.details.fragment;
 
+import android.view.View;
+
 import com.blankj.utilcode.util.ActivityUtils;
 import com.example.mytestapp.Base.fragment.BaseListMvpFragment;
 import com.example.mytestapp.Base.presenter.PresenterProviders;
@@ -20,8 +22,15 @@ public class WeiboDetailsCommentfragment extends BaseListMvpFragment<WeiboDetail
     private long id;
 
     @Override
+    protected void initBar() {
+        super.initBar();
+        titleLayoutI.setVisibility(View.GONE);
+    }
+
+    @Override
     protected void registerMultiType() {
-        mAdapter.register(WeiboDetailsCommentResp.CommentsBean.class  , new WeiboDetailsCommentBinder());
+        WeiboDetailsCommentBinder binder=new WeiboDetailsCommentBinder();
+        mAdapter.register(WeiboDetailsCommentResp.CommentsBean.class  , binder);
     }
 
     @Override

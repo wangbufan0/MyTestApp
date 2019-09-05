@@ -40,7 +40,7 @@ public class WeiboDetailsCommentViewHolder extends RecyclerView.ViewHolder {
 
     public void postData2UI(WeiboDetailsCommentResp.CommentsBean data){
 
-        GLideUtil.loadImageViewLoding(itemView.getContext(),data.getUser().getProfile_image_url(),IvAvatar);
+        GLideUtil.loadImageViewRound(itemView.getContext(),data.getUser().getProfile_image_url(),IvAvatar);
         TvName.setText(data.getUser().getName());
         TvTime.setText(data.getCreated_at());
         tvText.setText(data.getText());

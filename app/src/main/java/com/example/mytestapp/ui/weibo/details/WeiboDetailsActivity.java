@@ -49,7 +49,7 @@ public class WeiboDetailsActivity extends BaseMvpActivity implements WeiboDetail
     private ViewPager viewPager;
     public long id;
     private String[] titles = {"点赞","评论","转发"};
-    private Fragment[] fragments=new Fragment[3];
+    private Fragment[] fragments=new Fragment[1];
 
     public static void launch(Context context, WeiboHomepageResp.StatusesBean data){
         Intent intent=new Intent(context,WeiboDetailsActivity.class);
@@ -103,7 +103,7 @@ public class WeiboDetailsActivity extends BaseMvpActivity implements WeiboDetail
             }
             @Override
             public int getCount() {
-                return 3;
+                return 1;
             }
 
             @Nullable
@@ -159,7 +159,7 @@ public class WeiboDetailsActivity extends BaseMvpActivity implements WeiboDetail
 
     @Override
     public void loadCommentSuccessed(WeiboDetailsCommentResp resp) {
-        WeiboDetailsCommentfragment fragment= (WeiboDetailsCommentfragment) fragments[1];
+        WeiboDetailsCommentfragment fragment= (WeiboDetailsCommentfragment) fragments[0];
         fragment.postData2UI(resp);
     }
 }
