@@ -19,34 +19,26 @@ import com.example.mytestapp.utils.GLideUtil;
  * @Date: 2019/9/5 22:07
  * @Description:
  */
-public class WeiboDetailsCommentViewHolder extends RecyclerView.ViewHolder {
+public class WeiboDetailsAttitudeHolder extends RecyclerView.ViewHolder {
 
-    public static WeiboDetailsCommentViewHolder launch(ViewGroup parent){
+    public static WeiboDetailsAttitudeHolder launch(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weibo_details_conmment_layout,parent,false);
-        return new WeiboDetailsCommentViewHolder(view);
+        return new WeiboDetailsAttitudeHolder(view);
     }
     private ImageView IvAvatar;
     private TextView TvName;
-    private TextView TvTime;
-    private  TextView tvText;
+    private TextView tvSignature;
 
-    public WeiboDetailsCommentViewHolder(@NonNull View itemView) {
+    public WeiboDetailsAttitudeHolder(@NonNull View itemView) {
         super(itemView);
         IvAvatar = itemView.findViewById(R.id.iv_avatar);
         TvName = itemView.findViewById(R.id.tv_name);
-        TvTime = itemView.findViewById(R.id.tv_time);
-        tvText = itemView.findViewById(R.id.tv_text);
+        tvSignature=itemView.findViewById(R.id.tv_signature);
     }
 
     public void postData2UI(WeiboDetailsCommentResp.CommentsBean data){
-
         GLideUtil.loadImageViewRound(itemView.getContext(),data.getUser().getProfile_image_url(),IvAvatar);
         TvName.setText(data.getUser().getName());
-        TvTime.setText(data.getCreated_at());
-        tvText.setText(data.getText());
-
-
-
     }
 
 }

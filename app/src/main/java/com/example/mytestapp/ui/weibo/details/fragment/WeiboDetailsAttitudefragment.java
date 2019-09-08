@@ -18,7 +18,7 @@ import java.util.List;
  * @Date: 2019/9/5 21:55
  * @Description:
  */
-public class WeiboDetailsCommentfragment extends BaseListMvpFragment<WeiboDetailsCommentResp.CommentsBean> {
+public class WeiboDetailsAttitudefragment extends BaseListMvpFragment<WeiboDetailsCommentResp.CommentsBean> {
 
     WeiboDetailsPresenter presenter;
     private long id;

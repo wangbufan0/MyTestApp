@@ -14,10 +14,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
 import com.example.mytestapp.R;
 import com.example.mytestapp.manager.news.UserManager;
-import com.example.mytestapp.ui.news.community.home.CommunityFragment;
 import com.example.mytestapp.ui.news.home.fragment.HomepageFragment;
 import com.example.mytestapp.ui.news.login.LoginActivity;
 import com.example.mytestapp.ui.news.news.home.fragment.NewsFragment;
+import com.example.mytestapp.ui.news.personal.PersonalFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -69,8 +69,8 @@ public class NewsActivity extends BaseMvpActivity implements BottomNavigationVie
         fragments=new ArrayList<>();
         fragments.add(new HomepageFragment());
         fragments.add(new NewsFragment());
-        fragments.add(new CommunityFragment());
-      // fragments.add(new PersonalFragment());
+        //  fragments.add(new CommunityFragment());
+      fragments.add(new PersonalFragment());
 
         ///添加一行注释
 
@@ -130,24 +130,24 @@ public class NewsActivity extends BaseMvpActivity implements BottomNavigationVie
                 }
                 return true;
             }
-            case R.id.navigation_shequ: {
-                if (lastfragment != 2) {
-                    switchFragment(lastfragment, 2);
-                    lastfragment = 2;
-                }else{
-                    CommunityFragment fragment= (CommunityFragment) fragments.get(2);
-                    fragment.refresh();
-
-                }
-                return true;
-            }
 //            case R.id.navigation_shequ: {
 //                if (lastfragment != 2) {
 //                    switchFragment(lastfragment, 2);
 //                    lastfragment = 2;
+//                }else{
+//                    CommunityFragment fragment= (CommunityFragment) fragments.get(2);
+//                    fragment.refresh();
+//
 //                }
 //                return true;
-//            }
+   //         }
+            case R.id.navigation_shequ: {
+                if (lastfragment != 2) {
+                    switchFragment(lastfragment, 2);
+                    lastfragment = 2;
+                }
+                return true;
+            }
 
         }
         return false;

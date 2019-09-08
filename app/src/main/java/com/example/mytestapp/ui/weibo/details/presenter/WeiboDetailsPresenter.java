@@ -20,11 +20,12 @@ import java.util.Map;
  */
 public class WeiboDetailsPresenter extends BasePresenter<WeiboDetailsView> {
 
-    public void getCommentDatas(long id){
+    public void getCommentDatas(long id,long since,long max){
         Map<String,String> req=new HashMap<>();
         req.put("access_token", WeiboManager.getInstance().getToken());
         req.put("id",String.valueOf(id));
-
+        req.put("since_id",String.valueOf(since));
+        req.put("max_id",String.valueOf(max));
         WeiboRetrofit.getInstance()
                 .create(WeiboDetailsCommentService.class)
                 .getConmmentResp(req)
@@ -35,7 +36,6 @@ public class WeiboDetailsPresenter extends BasePresenter<WeiboDetailsView> {
                         mMvpView.loadCommentSuccessed(weiboDetailsCommentResp);
                     }
                 });
-
     }
 
 }

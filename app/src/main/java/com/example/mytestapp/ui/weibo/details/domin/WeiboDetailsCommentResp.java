@@ -17,16 +17,16 @@ public class WeiboDetailsCommentResp {
      * total_number : 7
      */
 
-    private int previous_cursor;
+    private long previous_cursor;
     private long next_cursor;
     private int total_number;
     private List<CommentsBean> comments;
 
-    public int getPrevious_cursor() {
+    public long getPrevious_cursor() {
         return previous_cursor;
     }
 
-    public void setPrevious_cursor(int previous_cursor) {
+    public void setPrevious_cursor(long previous_cursor) {
         this.previous_cursor = previous_cursor;
     }
 

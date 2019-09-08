@@ -25,6 +25,39 @@
         android:textColor="@color/color_hei"
         android:textSize="30dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="范围:"/>
+        <EditText
+            android:id="@+id/et_start"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="0"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"/>
+        <EditText
+            android:id="@+id/et_end"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="100"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_control"
         android:layout_width="100dp"

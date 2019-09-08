@@ -44,14 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <com.jaeger.ninegridimageview.NineGridImageView
-                android:id="@+id/mNiv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:imgGap="1dp"
-                app:maxSize="9"
-                app:showStyle="fill"
-                app:singleImgSize="200dp" />
+
         </LinearLayout>
 
 

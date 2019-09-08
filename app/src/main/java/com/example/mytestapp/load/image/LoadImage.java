@@ -42,10 +42,10 @@ public class LoadImage {
 
                     @Override
                     public void BitMapSuccessed(Bitmap bitmap) {
-                        String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dearxy";
+                        String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "mytestapp";
                         File appDir = new File(storePath);
                         if (!appDir.exists()) {
-                            appDir.mkdir();
+                            appDir.mkdirs();
                         }
                         String fileName = System.currentTimeMillis() + ".jpg";
                         File file = new File(appDir, fileName);

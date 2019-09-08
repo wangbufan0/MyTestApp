@@ -7,7 +7,12 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -18,6 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.mytestapp.Base.Activity.BaseMvpActivity;
 import com.example.mytestapp.Base.clickablespan.CustomUrlSpan;
 import com.example.mytestapp.R;
+import com.example.mytestapp.ui.news.community.BigImage.BigImageActivity;
 import com.example.mytestapp.ui.weibo.details.domin.WeiboDetailsCommentResp;
 import com.example.mytestapp.ui.weibo.details.fragment.WeiboDetailsCommentfragment;
 import com.example.mytestapp.ui.weibo.details.view.WeiboDetailsView;
@@ -42,13 +48,12 @@ public class WeiboDetailsActivity extends BaseMvpActivity implements WeiboDetail
     private TextView TvName;
     private TextView TvTime;
     private  TextView tvText;
-    private NineGridImageView nineGridImageView;
     private List<String> imageUrls;
     private String avatarUrl,Name,Time,Text;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public long id;
-    private String[] titles = {"点赞","评论","转发"};
+    private String[] titles = {"评论","转发","点赞"};
     private Fragment[] fragments=new Fragment[1];
 
     public static void launch(Context context, WeiboHomepageResp.StatusesBean data){
@@ -69,7 +74,9 @@ public class WeiboDetailsActivity extends BaseMvpActivity implements WeiboDetail
         Time = data.getCreated_at();
         Text = data.getText();
         id=data.getId();
-
+        titles[1]="点赞："+data.getAttitudes_count()+"人";
+        titles[0]="评论："+data.getComments_count()+"人";
+        titles[2]="转发："+data.getReposts_count()+"人";
     }
 
     @Override
@@ -83,9 +90,7 @@ public class WeiboDetailsActivity extends BaseMvpActivity implements WeiboDetail
         TvName = findViewById(R.id.tv_name);
         TvTime = findViewById(R.id.tv_time);
         tvText = findViewById(R.id.tv_text);
-        nineGridImageView=findViewById(R.id.nine_image_view);
-        nineGridImageView.setAdapter(new NineImageViewAdapter());
-        nineGridImageView.setImagesData(imageUrls);
+        imageChange();
         GLideUtil.loadImageViewRound(this, avatarUrl, IvAvatar);
         TvName.setText(Name);
         TvTime.setText(Time);
@@ -122,6 +127,45 @@ public class WeiboDetailsActivity extends BaseMvpActivity implements WeiboDetail
     protected void loadData(int page) {
 
     }
+
+    private void imageChange(){
+        LinearLayout linearLayout=findViewById(R.id.ll_image);
+        List<String> imageurls=imageUrls;
+        linearLayout.removeAllViews();
+        if(imageurls.size()==1){
+            ImageView imageView=new ImageView(this);
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+            //获得屏幕宽高
+            WindowManager manager = this.getWindowManager();
+            DisplayMetrics outMetrics = new DisplayMetrics();
+            manager.getDefaultDisplay().getMetrics(outMetrics);
+            int width = outMetrics.widthPixels;
+            int height=outMetrics.heightPixels;
+            //加载图片
+            GLideUtil.loadImageView(this,imageurls.get(0),imageView);
+            imageView.setAdjustViewBounds(true);
+            imageView.setMaxHeight(height*2/3);
+            imageView.setMaxWidth(width*2/3);
+            linearLayout.addView(imageView);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BigImageActivity.launch(v.getContext(),imageUrls.get(0));
+                }
+            });
+        }else if(imageurls.size()>1){
+            NineGridImageView nineGridImageView=new NineGridImageView(this);
+            nineGridImageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+            nineGridImageView.setGap(1);
+            nineGridImageView.setShowStyle(NineGridImageView.STYLE_GRID);
+            linearLayout.addView(nineGridImageView);
+            nineGridImageView.setAdapter(new NineImageViewAdapter());
+            nineGridImageView.setImagesData(imageurls);
+        }else{
+
+        }
+    }
+
 
     /**
      * 拦截超链接
